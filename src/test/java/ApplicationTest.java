@@ -1,8 +1,8 @@
 import org.junit.Test;
 
-public class HelloWorldTest {
+public class ApplicationTest {
     @Test
     public void testSmth(){
-        //
+        //...
     }
 }
