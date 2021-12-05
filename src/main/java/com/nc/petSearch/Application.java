@@ -20,16 +20,16 @@ public class Application {
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    private void testJpaMethods() {
+    private void writeToDB() {
         Pet pet = new Pet();
-        pet.setPetName("Tom");
-        pet.setText("It's cat");
+        pet.setPetName("Pet1");
+        pet.setText("--Description of Pet1--");
         Pet pet1 = new Pet();
-        pet1.setPetName("Jerry");
-        pet1.setText("It's mouse");
+        pet1.setPetName("Pet2");
+        pet1.setText("--Description of Pet1--");
         petsDB_service.createPetsDB(pet);
         petsDB_service.createPetsDB(pet1);
-        System.out.println("After adding");
-        petsDB_service.findAll().forEach(it -> System.out.println(it));
+        /*System.out.println("After adding");
+        petsDB_service.findAll().forEach(it -> System.out.println(it));*/
     }
 }
