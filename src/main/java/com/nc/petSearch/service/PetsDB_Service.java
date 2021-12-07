@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PetsDB_Service {
+public class PetsDB_Service {//TODO: DB в названии точно лишнее, если в репозитории еще можно было это допустить, то сервис к бд отношения не имеет, так же обращаю внимание на код стайл
 
     @Autowired
     private final PetsDBRepo petsDBRepo;
@@ -17,7 +17,7 @@ public class PetsDB_Service {
         this.petsDBRepo = petsDBRepo;
     }
 
-    public void createPetsDB(Pet pet) {
+    public void createPetsDB(Pet pet) {//TODO: название метода странно, лучше подходит просто createPet, то же самое касается и метода remove
         petsDBRepo.save(pet);
     }
 
@@ -29,7 +29,7 @@ public class PetsDB_Service {
         return petsDBRepo.findAll();
     }
 
-    public Pet findById(int userId) {
+    public Pet findById(int userId) {//TODO: метод из репозитория вернет Pet по его id, почему тут какой-то userId?)
         return petsDBRepo.findById(userId).orElse(null);
     }
 
