@@ -8,10 +8,9 @@ public class Pet {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column(name = "petName")
-    private String petName;
+    private String petName;//TODO: в целом pet в названии уже излишне, т.к. name относится к классу Pet
     @Column(name = "description")
-    private String description;
-
+    private String description;//TODO: для читаемости лучше бы добавить по строчке между переменными
 
     public Pet() {
     }
@@ -21,6 +20,7 @@ public class Pet {
 
     }
 
+    //TODO: сеттеры я бы предложил переделать, чтобы их можно было объединять в цепочки вызовов
     public void setText(String description) {
         this.description = description;
     }
