@@ -10,16 +10,16 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.EventListener;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.nc.petSearch.service"})
+@ComponentScan(basePackages = {"com.nc.petSearch.service"})//TODO: это тут не нужно, т.к. SpringBootApplication уже содержит ComponentScan и сканирует пакеты, которые находятся "ниже" этого класса
 public class Application {
     @Autowired
-    private PetsDB_Service petsDB_service;
+    private PetsDB_Service petsDB_service;//TODO: camelCase
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
-    @EventListener(ApplicationReadyEvent.class)
+    @EventListener(ApplicationReadyEvent.class)//TODO: hope its just for test))
     private void writeToDB() {
         Pet pet = new Pet();
         pet.setPetName("Pet1");
