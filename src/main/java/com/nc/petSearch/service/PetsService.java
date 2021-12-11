@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PetsDB_Service {//TODO: DB в названии точно лишнее, если в репозитории еще можно было это допустить, то сервис к бд отношения не имеет, так же обращаю внимание на код стайл
+public class PetsService {//TODO: DB в названии точно лишнее, если в репозитории еще можно было это допустить, то сервис к бд отношения не имеет, так же обращаю внимание на код стайл
 
     @Autowired
     private final PetsDBRepo petsDBRepo;
 
-    public PetsDB_Service(PetsDBRepo petsDBRepo) {
+    public PetsService(PetsDBRepo petsDBRepo) {
         this.petsDBRepo = petsDBRepo;
     }
 
