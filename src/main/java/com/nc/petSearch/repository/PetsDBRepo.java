@@ -27,5 +27,5 @@ public interface PetsDBRepo extends JpaRepository<Pet, Integer> {
     @Query(value = "select*from pet order by name", nativeQuery = true)
     List<Pet> sortByNameAlphabetically();
 
-    List<Pet> findByDescriptionContaining(String phrase);
+    List<Pet> findByDescriptionContainingIgnoreCase(String phrase);
 }

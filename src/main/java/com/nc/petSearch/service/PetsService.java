@@ -106,7 +106,7 @@ public class PetsService {
      * @param phrase
      * @return List<Pet>
      */
-    public List<Pet> findByDescriptionContaining(String phrase) {
-        return petsDBRepo.findByDescriptionContaining(phrase);
+    public List<Pet> findByDescriptionContainingIgnoreCase(String phrase) {
+        return petsDBRepo.findByDescriptionContainingIgnoreCase(phrase);
     }
 }
