@@ -34,7 +34,7 @@ public class PetsService {
     }
 
     public List<Pet> findAllByName(String name) {
-        return petsDBRepo.findAllByPetName(name);
+        return petsDBRepo.findAllByName(name);
     }
 
 }

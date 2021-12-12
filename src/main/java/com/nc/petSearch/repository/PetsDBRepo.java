@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PetsDBRepo extends JpaRepository<Pet, Integer> {
-    List<Pet> findAllByPetName(String name);
+    List<Pet> findAllByName(String name);
 }
