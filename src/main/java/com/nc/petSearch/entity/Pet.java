@@ -23,6 +23,9 @@ public class Pet {
     @Column(name = "size")
     private int size;
 
+    @Column(name = "age")
+    private int age; // возраст в месяцах
+
     public Pet() {
     }
 
@@ -84,6 +87,15 @@ public class Pet {
         return size;
     }
 
+    public Pet setAge(int age) {
+        this.age = age;
+        return this;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
     @Override
     public String toString() {
         return "Pet{" +
@@ -93,6 +105,7 @@ public class Pet {
                 ", description='" + description + '\'' +
                 ", gender='" + gender + '\'' +
                 ", size=" + size +
+                ", age=" + age +
                 '}';
     }
 }
