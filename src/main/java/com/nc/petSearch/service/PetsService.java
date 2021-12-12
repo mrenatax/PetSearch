@@ -99,4 +99,14 @@ public class PetsService {
     public List<Pet> sortByNameAlphabetically() {
         return petsDBRepo.sortByNameAlphabetically();
     }
+
+    /**
+     * Поиск питомцев, описание которых содержит указанную фразу
+     *
+     * @param phrase
+     * @return List<Pet>
+     */
+    public List<Pet> findByDescriptionContaining(String phrase) {
+        return petsDBRepo.findByDescriptionContaining(phrase);
+    }
 }
