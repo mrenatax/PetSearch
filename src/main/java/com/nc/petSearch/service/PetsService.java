@@ -33,8 +33,70 @@ public class PetsService {
         return petsDBRepo.findById(id).orElse(null);
     }
 
+    /**
+     * Поиск домашних животных по заданной породе (фильтрация)
+     *
+     * @param name порода питомца
+     * @return List<Pet>
+     */
     public List<Pet> findAllByName(String name) {
         return petsDBRepo.findAllByName(name);
     }
 
+    /**
+     * Поиск домашних животных по заданному типу
+     *
+     * @param typeOfPet тип питомца (dog, cat и т.д.) (фильтрация по заданному типу)
+     * @return List<Pet>
+     */
+    public List<Pet> findAllByTypeOfPet(String typeOfPet) {
+        return petsDBRepo.findAllByTypeOfPet(typeOfPet);
+    }
+
+    /**
+     * Поиск домашних животных по полу (фильтрация по заданному полу)
+     *
+     * @param gender пол питомца
+     * @return List<Pet>
+     */
+    public List<Pet> findAllByGender(String gender) {
+        return petsDBRepo.findAllByGender(gender);
+    }
+
+    /**
+     * Поиск домашних животных по размеру (фильтрация по заданному размеру)
+     *
+     * @param size размер в холке
+     * @return List<Pet>
+     */
+    public List<Pet> findAllBySize(int size) {
+        return petsDBRepo.findAllBySize(size);
+    }
+
+    /**
+     * Сортировака по размеру в порядке возрастания
+     *
+     * @return List<Pet>
+     */
+    public List<Pet> sortBySizeAscending() {
+        return petsDBRepo.sortBySizeAscending();
+    }
+
+    /**
+     * Сортировака по размеру в порядке убывания
+     *
+     * @return List<Pet>
+     */
+    public List<Pet> sortBySizeDescending() {
+        return petsDBRepo.sortBySizeDescending();
+    }
+
+    /**
+     * Сортировка по породе в алфавитном порядке
+     *
+     * @return List<Pet>
+     */
+    public List<Pet> sortByNameAlphabetically() {
+        return petsDBRepo.sortByNameAlphabetically();
+    }
 }

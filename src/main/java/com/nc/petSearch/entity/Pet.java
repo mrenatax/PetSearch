@@ -83,4 +83,16 @@ public class Pet {
     public int getSize() {
         return size;
     }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", typeOfPet='" + typeOfPet + '\'' +
+                ", description='" + description + '\'' +
+                ", gender='" + gender + '\'' +
+                ", size=" + size +
+                '}';
+    }
 }
