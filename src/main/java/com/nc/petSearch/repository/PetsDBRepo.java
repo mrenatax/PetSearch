@@ -24,6 +24,14 @@ public interface PetsDBRepo extends JpaRepository<Pet, Integer> {
     @Query(value = "select * from pet order by size desc", nativeQuery = true)
     List<Pet> sortBySizeDescending();
 
+    List<Pet> findAllByAge(int age);
+
+    @Query(value = "select * from pet order by age", nativeQuery = true)
+    List<Pet> sortByAgeAscending();
+
+    @Query(value = "select * from pet order by age desc", nativeQuery = true)
+    List<Pet> sortByAgeDescending();
+
     @Query(value = "select*from pet order by name", nativeQuery = true)
     List<Pet> sortByNameAlphabetically();
 

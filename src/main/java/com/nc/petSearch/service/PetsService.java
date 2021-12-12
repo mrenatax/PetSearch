@@ -109,4 +109,32 @@ public class PetsService {
     public List<Pet> findByDescriptionContainingIgnoreCase(String phrase) {
         return petsDBRepo.findByDescriptionContainingIgnoreCase(phrase);
     }
+
+    /**
+     * Поиск домашних животных по возрасту (фильтрация по заданному возрасту)
+     *
+     * @param age возраст в месяцах
+     * @return List<Pet>
+     */
+    public List<Pet> findAllByAge(int age) {
+        return petsDBRepo.findAllByAge(age);
+    }
+
+    /**
+     * Сортировака по возрасту в порядке возрастания
+     *
+     * @return List<Pet>
+     */
+    public List<Pet> sortByAgeAscending() {
+        return petsDBRepo.sortByAgeAscending();
+    }
+
+    /**
+     * Сортировака по возрасту в порядке убывания
+     *
+     * @return List<Pet>
+     */
+    public List<Pet> sortByAgeDescending() {
+        return petsDBRepo.sortByAgeDescending();
+    }
 }
