@@ -7,10 +7,12 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "petName")
-    private String petName;//TODO: в целом pet в названии уже излишне, т.к. name относится к классу Pet
+
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "description")
-    private String description;//TODO: для читаемости лучше бы добавить по строчке между переменными
+    private String description;
 
     public Pet() {
     }
@@ -37,19 +39,19 @@ public class Pet {
         this.id = id;
     }
 
-    public String getPetName() {
-        return petName;
+    public String getName() {
+        return name;
     }
 
-    public void setPetName(String petName) {
-        this.petName = petName;
+    public void setName(String petName) {
+        this.name = petName;
     }
 
     @Override
     public String toString() {
         return "PetsDB{" +
                 "id=" + id +
-                ", petName='" + petName + '\'' +
+                ", petName='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
