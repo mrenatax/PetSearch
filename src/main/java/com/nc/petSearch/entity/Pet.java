@@ -22,9 +22,9 @@ public class Pet {
 
     }
 
-    //TODO: сеттеры я бы предложил переделать, чтобы их можно было объединять в цепочки вызовов
-    public void setText(String description) {
+    public Pet setText(String description) {
         this.description = description;
+        return this;
     }
 
     public String getDescription() {
@@ -35,16 +35,18 @@ public class Pet {
         return id;
     }
 
-    public void setId(Integer id) {
+    public Pet setId(Integer id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String petName) {
+    public Pet setName(String petName) {
         this.name = petName;
+        return this;
     }
 
     @Override
