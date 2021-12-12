@@ -9,20 +9,46 @@ public class Pet {
     private Integer id;
 
     @Column(name = "name")
-    private String name;
+    private String name; // Порода
+
+    @Column(name = "typeOfPet")
+    private String typeOfPet; // Собака/кошка
 
     @Column(name = "description")
     private String description;
 
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "size")
+    private int size;
+
     public Pet() {
     }
 
-    public Pet(String description) {
-        this.description = description;
-
+    public Pet(String name) {
+        this.name = name;
     }
 
-    public Pet setText(String description) {
+    public Pet setName(String petName) {
+        this.name = petName;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Pet setTypeOfPet(String typeOfPet) {
+        this.typeOfPet = typeOfPet;
+        return this;
+    }
+
+    public String getTypeOfPet() {
+        return typeOfPet;
+    }
+
+    public Pet setDescription(String description) {
         this.description = description;
         return this;
     }
@@ -31,30 +57,30 @@ public class Pet {
         return description;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     public Pet setId(Integer id) {
         this.id = id;
         return this;
     }
 
-    public String getName() {
-        return name;
+    public Integer getId() {
+        return id;
     }
 
-    public Pet setName(String petName) {
-        this.name = petName;
+    public Pet setGender(String gender) {
+        this.gender = gender;
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "PetsDB{" +
-                "id=" + id +
-                ", petName='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public String getGender() {
+        return gender;
+    }
+
+    public Pet setSize(int size) {
+        this.size = size;
+        return this;
+    }
+
+    public int getSize() {
+        return size;
     }
 }

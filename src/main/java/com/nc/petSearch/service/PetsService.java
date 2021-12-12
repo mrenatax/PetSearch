@@ -29,7 +29,7 @@ public class PetsService {
         return petsDBRepo.findAll();
     }
 
-    public Pet findById(int id) {//TODO: метод из репозитория вернет Pet по его id, почему тут какой-то userId?)
+    public Pet findById(int id) {
         return petsDBRepo.findById(id).orElse(null);
     }
 
