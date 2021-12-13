@@ -7,50 +7,105 @@ public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @Column(name = "petName")
-    private String petName;//TODO: в целом pet в названии уже излишне, т.к. name относится к классу Pet
+
+    @Column(name = "name")
+    private String name; // Порода
+
+    @Column(name = "typeOfPet")
+    private String typeOfPet; // Собака/кошка
+
     @Column(name = "description")
-    private String description;//TODO: для читаемости лучше бы добавить по строчке между переменными
+    private String description;
+
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "size")
+    private int size;
+
+    @Column(name = "age")
+    private int age; // возраст в месяцах
 
     public Pet() {
     }
 
-    public Pet(String description) {
-        this.description = description;
-
+    public Pet(String name) {
+        this.name = name;
     }
 
-    //TODO: сеттеры я бы предложил переделать, чтобы их можно было объединять в цепочки вызовов
-    public void setText(String description) {
+    public Pet setName(String petName) {
+        this.name = petName;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Pet setTypeOfPet(String typeOfPet) {
+        this.typeOfPet = typeOfPet;
+        return this;
+    }
+
+    public String getTypeOfPet() {
+        return typeOfPet;
+    }
+
+    public Pet setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
+    public Pet setId(Integer id) {
+        this.id = id;
+        return this;
+    }
+
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public Pet setGender(String gender) {
+        this.gender = gender;
+        return this;
     }
 
-    public String getPetName() {
-        return petName;
+    public String getGender() {
+        return gender;
     }
 
-    public void setPetName(String petName) {
-        this.petName = petName;
+    public Pet setSize(int size) {
+        this.size = size;
+        return this;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Pet setAge(int age) {
+        this.age = age;
+        return this;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     @Override
     public String toString() {
-        return "PetsDB{" +
+        return "Pet{" +
                 "id=" + id +
-                ", petName='" + petName + '\'' +
+                ", name='" + name + '\'' +
+                ", typeOfPet='" + typeOfPet + '\'' +
                 ", description='" + description + '\'' +
+                ", gender='" + gender + '\'' +
+                ", size=" + size +
+                ", age=" + age +
                 '}';
     }
 }
