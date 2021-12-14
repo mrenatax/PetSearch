@@ -106,8 +106,13 @@ public class Pet {
         return age;
     }
 
+    /**
+     *
+     * @param avatar название изображения (например dog1.jpeg), располоэенного в ресурсах ./src/main/resources/static/img/pets/
+     * @return
+     */
     public Pet setAvatar(String avatar) {
-        this.avatar = avatar;
+        this.avatar = "./src/main/resources/static/img/pets/" + avatar;
         return this;
     }
 
@@ -116,7 +121,7 @@ public class Pet {
     }
 
     public Pet setPictureForDescription(String pic) {
-        this.pictureForDescription = pic;
+        this.pictureForDescription = "./src/main/resources/static/img/pets/" + pic;
         return this;
     }
 
@@ -125,7 +130,7 @@ public class Pet {
     }
 
     public Pet setMinorPictureForDescription(String pic) {
-        this.minorPictureForDescription = pic;
+        this.minorPictureForDescription = "./src/main/resources/static/img/pets/" + pic;
         return this;
     }
 
