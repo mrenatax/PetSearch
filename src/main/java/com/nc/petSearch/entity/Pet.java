@@ -20,10 +20,10 @@ public class Pet {
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "size")
+    @Column(name = "size")//TODO взрослого животного?
     private int size;
 
-    @Column(name = "age")
+    @Column(name = "age")//TODO в бд хранить др, а отображать возраст в месяцах
     private int age; // возраст в месяцах
 
     public Pet() {

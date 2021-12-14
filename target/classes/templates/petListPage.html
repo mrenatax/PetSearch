@@ -17,9 +17,11 @@
                             Сортировка
                         </div>
                         <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">По дате публикации</a></li>
-                            <li><a class="dropdown-item" href="#">По дате рождения</a></li>
-                            <li><a class="dropdown-item" href="#">По породе</a></li>
+                            <li><a class="dropdown-item" href="/breed-sort">Порода: в алфавитном порядке</a></li>
+                            <li><a class="dropdown-item" href="/age-sort-asc">Возраст: по возрастанию</a></li>
+                            <li><a class="dropdown-item" href="/age-sort-desc">Возраст: по убыванию</a></li>
+                            <li><a class="dropdown-item" href="/size-sort-asc">Размер: по возрастанию</a></li>
+                            <li><a class="dropdown-item" href="/size-sort-desc">Размер: по убыванию</a></li>
                         </ul>
                     </div>
                     <div id="filter" class="d-inline dropdown">
@@ -40,7 +42,7 @@
                     <div class="pet-card my-2" style="width: 18rem;">
                         <img src="/img/pets/dog1.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
-                            <h5 class="card-title" th:text="${element.petName}"></h5>
+                            <h5 class="card-title" th:text="${element.name}"></h5>
                             <p class="card-text" th:text="${element.description}"></p>
                             <a th:href="'/pet/'+${element.id}" class="btn btn-warning">Узнать больше</a>
                         </div>
