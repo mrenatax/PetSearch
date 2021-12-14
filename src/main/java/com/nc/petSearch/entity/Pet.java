@@ -1,7 +1,6 @@
 package com.nc.petSearch.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
 @Entity
 public class Pet {
