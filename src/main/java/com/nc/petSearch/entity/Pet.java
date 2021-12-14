@@ -10,14 +10,35 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Pet {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "name")
-    private String petName;//TODO: в целом pet в названии уже излишне, т.к. name относится к классу Pet
+    private String name; // Порода
+
+    @Column(name = "typeOfPet")
+    private String typeOfPet; // Собака/кошка
 
     @Column(name = "description")
-    private String description;//TODO: для читаемости лучше бы добавить по строчке между переменными
+    private String description;
+
+    @Column(name = "gender")
+    private String gender;
+
+    @Column(name = "size")
+    private int size;
+
+    @Column(name = "age")
+    private int age; // возраст в месяцах
+
+    @Column(name = "avatar")
+    private String avatar;
+
+    @Column(name = "pictureForDescription")
+    private String pictureForDescription;
+
+    @Column(name = "minorPictureForDescription")
+    private String minorPictureForDescription;
+
 }
