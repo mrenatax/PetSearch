@@ -43,6 +43,9 @@
                         <img src="/img/pets/dog1.jpeg" class="card-img-top" alt="">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${element.name}"></h5>
+                            <h6 class="card-info-age text-muted" th:text="${element.typeOfPet}"></h6>
+                            <h6 class="card-info-age text-muted" th:text="'Возраст: '+${element.age}+' мес'"></h6>
+                            <h6 class="card-info-gender text-muted" th:text="'Пол: '+${element.gender}"></h6>
                             <p class="card-text" th:text="${element.description}"></p>
                             <a th:href="'/pet/'+${element.id}" class="btn btn-warning">Узнать больше</a>
                         </div>

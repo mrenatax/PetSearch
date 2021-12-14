@@ -41,9 +41,9 @@
                 </div>
             </div>
             <div class="col p-4 d-flex flex-column position-static">
-                <strong class="d-inline-block mb-2 text-success">Щенок</strong>
+                <strong class="d-inline-block mb-2 text-success" th:text="${pet.typeOfPet}"></strong>
                 <h3 class="mb-0" th:text="${pet.name}"></h3>
-                <div class="mb-1 text-muted">3 мес</div>
+                <div class="mb-1 text-muted" th:text="${pet.age}+' мес'"></div>
                 <p class="mb-auto" th:text="${pet.description}"></p>
             </div>
         </div>

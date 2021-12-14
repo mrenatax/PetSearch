@@ -17,6 +17,9 @@ public interface PetsDBRepo extends JpaRepository<Pet, Integer> {
 
     List<Pet> findAllBySize(int size);
 
+    @Query(value="SELECT * FROM pet WHERE CONCAT(name,' ',type_of_pet,' ',age,' месяца ',gender,' ', description) LIKE %?1%", nativeQuery = true)
+    List<Pet> findAllByKeyword(String keyword);
+
     @Query(value = "select * from pet order by size", nativeQuery = true)
     List<Pet> sortBySizeAscending();
 

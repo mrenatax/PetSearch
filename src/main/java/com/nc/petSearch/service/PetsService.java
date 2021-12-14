@@ -33,6 +33,10 @@ public class PetsService {
         return petsDBRepo.findById(id).orElse(null);
     }
 
+    public List<Pet> findAllByKeyword(String keyword) {
+        return petsDBRepo.findAllByKeyword(keyword);
+    }
+
     /**
      * Поиск домашних животных по заданной породе (фильтрация)
      *
