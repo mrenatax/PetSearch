@@ -1,6 +1,7 @@
 package com.nc.petSearch.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 public class Pet {
@@ -25,6 +26,16 @@ public class Pet {
 
     @Column(name = "age")
     private int age; // возраст в месяцах
+
+    @Column(name = "avatar")
+    private String avatar;
+
+    @Column(name = "pictureForDescription")
+    private String pictureForDescription;
+
+    @Column(name = "minorPictureForDescription")
+    private String minorPictureForDescription;
+
 
     public Pet() {
     }
@@ -94,6 +105,33 @@ public class Pet {
 
     public int getAge() {
         return age;
+    }
+
+    public Pet setAvatar(String avatar) {
+        this.avatar = avatar;
+        return this;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public Pet setPictureForDescription(String pic) {
+        this.pictureForDescription = pic;
+        return this;
+    }
+
+    public String getPictureForDescription() {
+        return pictureForDescription;
+    }
+
+    public Pet setMinorPictureForDescription(String pic) {
+        this.minorPictureForDescription = pic;
+        return this;
+    }
+
+    public String getMinorPictureForDescription() {
+        return minorPictureForDescription;
     }
 
     @Override
