@@ -26,6 +26,16 @@ public class Pet {
     @Column(name = "age")//TODO в бд хранить др, а отображать возраст в месяцах
     private int age; // возраст в месяцах
 
+    @Column(name = "avatar")
+    private String avatar;
+
+    @Column(name = "pictureForDescription")
+    private String pictureForDescription;
+
+    @Column(name = "minorPictureForDescription")
+    private String minorPictureForDescription;
+
+
     public Pet() {
     }
 
@@ -94,6 +104,38 @@ public class Pet {
 
     public int getAge() {
         return age;
+    }
+
+    /**
+     *
+     * @param avatar название изображения (например dog1.jpeg), располоэенного в ресурсах ./src/main/resources/static/img/pets/
+     * @return
+     */
+    public Pet setAvatar(String avatar) {
+        this.avatar = "./src/main/resources/static/img/pets/" + avatar;
+        return this;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public Pet setPictureForDescription(String pic) {
+        this.pictureForDescription = "./src/main/resources/static/img/pets/" + pic;
+        return this;
+    }
+
+    public String getPictureForDescription() {
+        return pictureForDescription;
+    }
+
+    public Pet setMinorPictureForDescription(String pic) {
+        this.minorPictureForDescription = "./src/main/resources/static/img/pets/" + pic;
+        return this;
+    }
+
+    public String getMinorPictureForDescription() {
+        return minorPictureForDescription;
     }
 
     @Override
