@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PetsDBRepo extends JpaRepository<Pet, Integer> {
+public interface PetsRepo extends JpaRepository<Pet, Integer> {
     List<Pet> findAllByName(String name);
 
     List<Pet> findAllByTypeOfPet(String typeOfPet);

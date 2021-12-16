@@ -18,21 +18,17 @@ public class SecurityConfiguration {
     private final UserDetailsService userDetailsService;
 
     @Autowired
-    public SecurityConfiguration(@Qualifier("userDetailsService") UserDetailsService userDetailsService) {
+    public SecurityConfiguration(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
     @Autowired
     public void authConfigure(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
-      /*  auth.inMemoryAuthentication()
-                .withUser("student")
-                .password(passwordEncoder.encode("123"))
-                .roles("STUDENT")
-                .and()
+        auth.inMemoryAuthentication()
                 .withUser("admin")
                 .password(passwordEncoder.encode("123"))
                 .roles("ADMIN");
-*/
+
         auth.userDetailsService(userDetailsService);
     }
 
@@ -47,15 +43,16 @@ public class SecurityConfiguration {
                     .antMatchers("/**").permitAll()
                     .and()
                     .formLogin()
-                    .defaultSuccessUrl("/courses")
+                    .defaultSuccessUrl("/")
                     .and()
                     .logout()
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID")
-                    .logoutSuccessUrl("/courses")
-                    .and()
+                    .logoutSuccessUrl("/");
+            //TODO обсудить добавление страницы, когда пользователь пытается получить доступ запрещенным для его роли ресурсам
+                    /*.and()
                     .exceptionHandling()
-                    .accessDeniedPage("/users/access_denied");
+                    .accessDeniedPage("/users/access_denied");*/
         }
     }
 }
