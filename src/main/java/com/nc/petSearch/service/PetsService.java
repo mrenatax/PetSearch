@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PetsService {
+public class PetsService {//TODO: DB в названии точно лишнее, если в репозитории еще можно было это допустить, то сервис к бд отношения не имеет, так же обращаю внимание на код стайл
 
     @Autowired
     private final PetsDBRepo petsDBRepo;
@@ -17,11 +17,11 @@ public class PetsService {
         this.petsDBRepo = petsDBRepo;
     }
 
-    public void createPet(Pet pet) {
+    public void createPetsDB(Pet pet) {//TODO: название метода странно, лучше подходит просто createPet, то же самое касается и метода remove
         petsDBRepo.save(pet);
     }
 
-    public void removePet(Pet pet) {
+    public void removePetsDB(Pet pet) {
         petsDBRepo.delete(pet);
     }
 
@@ -29,112 +29,12 @@ public class PetsService {
         return petsDBRepo.findAll();
     }
 
-    public Pet findById(int id) {
-        return petsDBRepo.findById(id).orElse(null);
+    public Pet findById(int userId) {//TODO: метод из репозитория вернет Pet по его id, почему тут какой-то userId?)
+        return petsDBRepo.findById(userId).orElse(null);
     }
 
-    /**
-     * Поиск домашних животных по заданной породе (фильтрация)
-     *
-     * @param name порода питомца
-     * @return List<Pet>
-     */
     public List<Pet> findAllByName(String name) {
-        return petsDBRepo.findAllByName(name);
+        return petsDBRepo.findAllByPetName(name);
     }
 
-    /**
-     * Поиск домашних животных по заданному типу
-     *
-     * @param typeOfPet тип питомца (dog, cat и т.д.) (фильтрация по заданному типу)
-     * @return List<Pet>
-     */
-    public List<Pet> findAllByTypeOfPet(String typeOfPet) {
-        return petsDBRepo.findAllByTypeOfPet(typeOfPet);
-    }
-
-    /**
-     * Поиск домашних животных по полу (фильтрация по заданному полу)
-     *
-     * @param gender пол питомца
-     * @return List<Pet>
-     */
-    public List<Pet> findAllByGender(String gender) {
-        return petsDBRepo.findAllByGender(gender);
-    }
-
-    /**
-     * Поиск домашних животных по размеру (фильтрация по заданному размеру)
-     *
-     * @param size размер в холке
-     * @return List<Pet>
-     */
-    public List<Pet> findAllBySize(int size) {
-        return petsDBRepo.findAllBySize(size);
-    }
-
-    /**
-     * Сортировака по размеру в порядке возрастания
-     *
-     * @return List<Pet>
-     */
-    public List<Pet> sortBySizeAscending() {
-        return petsDBRepo.sortBySizeAscending();
-    }
-
-    /**
-     * Сортировака по размеру в порядке убывания
-     *
-     * @return List<Pet>
-     */
-    public List<Pet> sortBySizeDescending() {
-        return petsDBRepo.sortBySizeDescending();
-    }
-
-    /**
-     * Сортировка по породе в алфавитном порядке
-     *
-     * @return List<Pet>
-     */
-    public List<Pet> sortByNameAlphabetically() {
-        return petsDBRepo.sortByNameAlphabetically();
-    }
-
-    /**
-     * Поиск питомцев, описание которых содержит указанную фразу
-     *
-     * @param phrase
-     * @return List<Pet>
-     */
-    public List<Pet> findByDescriptionContainingIgnoreCase(String phrase) {
-        return petsDBRepo.findByDescriptionContainingIgnoreCase(phrase);
-    }
-
-    /**
-     * Поиск домашних животных по возрасту (фильтрация по заданному возрасту)
-     *
-     * @param age возраст в месяцах
-     * @return List<Pet>
-     */
-    public List<Pet> findAllByAge(int age) {
-        return petsDBRepo.findAllByAge(age);
-    }
-
-    /**
-     * Сортировака по возрасту в порядке возрастания
-     *
-     * @return List<Pet>
-     */
-    public List<Pet> sortByAgeAscending() {
-        return petsDBRepo.sortByAgeAscending();
-    }
-
-    /**
-     * Сортировака по возрасту в порядке убывания
-     *
-     * @return List<Pet>
-     */
-    public List<Pet> sortByAgeDescending() {
-        return petsDBRepo.sortByAgeDescending();
-    }
 }
