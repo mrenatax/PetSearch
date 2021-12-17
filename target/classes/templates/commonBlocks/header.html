@@ -9,25 +9,38 @@
                 </svg>
                 <span class="fs-4" style="margin-left: 3px;">PetSearch</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-menu" style="margin-right: 16px">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/nurseries">Питомники</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/breeders">Заводчики</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/petslist">Животные</a>
-                    </li>
-                </ul>
-                <form action="/petslist/search" class="d-flex">
-                    <input class="form-control me-3" type="search" name="keyword" placeholder="Искать питомца" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Поиск</button>
-                </form>
+            <div class="d-flex justify-content-end">
+                <div class="d-inline">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-menu" style="margin-right: 16px">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/kittens">Котята</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/puppies">Щенки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/petslist">Все животные</a>
+                            </li>
+                        </ul>
+                        <form action="/petslist/search" class="d-flex me-3">
+                            <input class="form-control me-3" type="search" name="keyword" placeholder="Искать питомца" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Поиск</button>
+                        </form>
+                        <div class="d-inline dropdown text-end align-items-center" style="padding-top: 5px;margin-right: 5px;">
+                            <div class="d-block link-dark text-decoration-none d-flex justify-content-start" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-top: 10px; margin-bottom: 10px;">
+                                <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                            </div>
+                            <ul id="user-dropdown" class="dropdown-menu text-small" aria-labelledby="dropdownUser">
+                                <li><a class="dropdown-item" href="/my-announcements">Мои объявления</a></li>
+                                <li><a class="dropdown-item" href="/add-announcement">Добавить объявление</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </nav>

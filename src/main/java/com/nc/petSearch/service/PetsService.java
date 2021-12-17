@@ -3,8 +3,18 @@ package com.nc.petSearch.service;
 import com.nc.petSearch.entity.Pet;
 import com.nc.petSearch.repository.PetsDBRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -25,17 +35,34 @@ public class PetsService {
         petsDBRepo.delete(pet);
     }
 
-    public List<Pet> findAll() {
-        return petsDBRepo.findAll();
+    public Page<Pet> findAll(int pageNum, String field, String sortDir) {
+        Pageable pageable = PageRequest.of(pageNum-1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
+                : Sort.by(field).descending());
+        return petsDBRepo.findAll(pageable);
+
+    }
+
+    public List<Pet> findAllForUser() {
+        List<Pet> result = new ArrayList<Pet>();
+        petsDBRepo.findAll().forEach(result::add);
+        return result;
     }
 
     public Pet findById(int id) {
         return petsDBRepo.findById(id).orElse(null);
     }
 
-    public List<Pet> findAllByKeyword(String keyword) {
-        return petsDBRepo.findAllByKeyword(keyword);
+    public Page<Pet> findAllByKeyword(int pageNum,String keyword, String field, String sortDir) {
+
+        Pageable pageable = PageRequest.of(pageNum - 1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
+                : Sort.by(field).descending());
+
+        if (keyword != null) {
+            return petsDBRepo.findAllByKeyword(keyword, pageable);
+        }
+        return petsDBRepo.findAll(pageable);
     }
+
 
     /**
      * Поиск домашних животных по заданной породе (фильтрация)

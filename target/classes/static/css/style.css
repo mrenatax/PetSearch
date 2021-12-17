@@ -86,6 +86,13 @@ input[type="search"]::-webkit-search-cancel-button {
     box-shadow: 0 0 0 0.25rem rgba(243, 197, 12, 0.479);
 }
 
+#user-dropdown {
+    right:0;
+    left:auto;
+
+}
+
+
 .pet-card{
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.06);
     transition: all .3s;
@@ -108,39 +115,45 @@ input[type="search"]::-webkit-search-cancel-button {
     max-height: 100%;
 }
 
+
+
 @media (min-width: 544px) {  
-    .dropdown:hover>.dropdown-menu {
+    #sort:hover>.dropdown-menu, #filter:hover>.dropdown-menu {
        display: block;
    }
-   .dropdown>.dropdown-toggle:active {
+   #sort>.dropdown-toggle:active {
        pointer-events: none;
    }
   }
 
 .dropdown-menu{
-    background-color: #2c1c04;
+        color: #2c1c04;
+        background-color: white;
+        border: 1px solid #2c1c04;
+        padding:0;
 }
 
 .dropdown-item{
-    color:white;
+    color: #2c1c04;
+}
+.dropdown-menu:first-child {
+    border-top-right-radius: 0.25rem;
+    border-top-left-radius: 0.25rem;
 }
 .dropdown-item:focus, .dropdown-item:hover{
-    color: white;
-    background-color: #2c1c04;
+        color: #2c1c04;
+        background-color: #f3c30c;
+        border: 1px solid #2c1c04;
+        box-sizing: border-box;
+            outline: -webkit-focus-ring-color auto 1px;
+            outline-color: -webkit-focus-ring-color;
+            outline-style: auto;
+            outline-width: 1px;
 }
 
-.dropdown-menu li a::after{
-    content: '';
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: #f3c30c;
-    transition: all .3s;
-    transform: scale(0);
+
 }
-.dropdown-menu li a:hover::after{
-    transform: scale(1);
-}
+
 
 .btn.dropdown-toggle{
     color:#2c1c04;
@@ -157,4 +170,34 @@ input[type="search"]::-webkit-search-cancel-button {
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.page-link {
+        color: #2c1c04;
+        background-color: white;
+        border: 1px solid #2c1c04;
+}
+
+.page-link:hover {
+        color: #2c1c04;
+        background-color: #f3c30c;
+        border: 1px solid #2c1c04;
+}
+
+
+.page-link.active, .page-link:focus {
+            color: #2c1c04;
+            background-color: #f3c30c;
+            border: 1px solid #2c1c04;
+            box-shadow: none;
+}
+
+.card-href {
+    color: black;
+        text-decoration: none;
+}
+
+.card-href:hover {
+    color: black;
+        text-decoration: none;
+}
+
 

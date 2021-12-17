@@ -12,45 +12,44 @@
         <div class="container">
             <div class="row border-bottom border-top">
                 <div class="filters d-flex justify-content-start">
-                    <div id="sort" class="d-inline dropdown">
+                    <div id="sort" class="dropdown">
                         <div class="btn dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Сортировка
                         </div>
                         <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="/breed-sort">Порода: в алфавитном порядке</a></li>
-                            <li><a class="dropdown-item" href="/age-sort-asc">Возраст: по возрастанию</a></li>
-                            <li><a class="dropdown-item" href="/age-sort-desc">Возраст: по убыванию</a></li>
-                            <li><a class="dropdown-item" href="/size-sort-asc">Размер: по возрастанию</a></li>
-                            <li><a class="dropdown-item" href="/size-sort-desc">Размер: по убыванию</a></li>
-                        </ul>
-                    </div>
-                    <div id="filter" class="d-inline dropdown">
-                        <div class="btn dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Фильтр
-                        </div>
-                        <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li><a class="dropdown-item" href="#">Фильтр1</a></li>
-                            <li><a class="dropdown-item" href="#">Фильтр2</a></li>
-                            <li><a class="dropdown-item" href="#">Фильтр3</a></li>
+                            <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? ${keyword}:' '), field=name, sortDir=asc)}">Порода: в алфавитном порядке</a></li>
+                            <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? ${keyword}:' '), field=age, sortDir=asc)}">Возраст: по возрастанию</a></li>
+                            <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? ${keyword}:' '), field=name, sortDir=desc)}">Возраст: по убыванию</a></li>
                         </ul>
                     </div>
                 </div>
-
             </div>
             <div class="row" style="margin-top: 20px;">
-                <div th:each="element : ${pets}" class="col-xxl-3 col-lg-4 col-sm-6">
-                    <div class="pet-card my-2" style="width: 18rem;">
-                        <img src="/img/pets/dog1.jpeg" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title" th:text="${element.name}"></h5>
-                            <h6 class="card-info-age text-muted" th:text="${element.typeOfPet}"></h6>
-                            <h6 class="card-info-age text-muted" th:text="'Возраст: '+${element.age}+' мес'"></h6>
-                            <h6 class="card-info-gender text-muted" th:text="'Пол: '+${element.gender}"></h6>
-                            <p class="card-text" th:text="${element.description}"></p>
-                            <a th:href="'/pet/'+${element.id}" class="btn btn-warning">Узнать больше</a>
+                <div th:each="element : ${pets}" class="col-xxl-3 col-lg-4 col-sm-12">
+                    <a th:href="'/pet/'+${element.id}" class="card-href">
+                        <div class="pet-card my-2" style="width: 18rem; height: 409.669px">
+                            <img src="/img/pets/dog1.jpeg" class="card-img-top" alt="">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${element.name}"></h5>
+                                <h6 class="card-info-age text-muted" th:text="${element.typeOfPet}"></h6>
+                                <h6 class="card-info-age text-muted" th:text="'Возраст: '+${element.age}+' мес'"></h6>
+                                <h6 class="card-info-gender text-muted" th:text="'Пол: '+${element.gender}"></h6>
+                                <p class="card-text" th:text="${element.description}"></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
+            </div>
+            <div class="row" style="margin-top: 20px;">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li th:each="i: ${#numbers.sequence(1, totalPages)}" class="page-item">
+                            <a th:class="${i==currentPage} ? 'page-link active': 'page-link'"
+                               th:href="@{/petslist/{i}(i=${i}, keyword=(${keyword != null} ? ${keyword}:' '), field=${field}, sortDir=${sortDir})}"
+                               th:text="${i}"></a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </section>

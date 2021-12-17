@@ -2,7 +2,10 @@ package com.nc.petSearch.controllers;
 
 import com.nc.petSearch.entity.Pet;
 import com.nc.petSearch.service.PetsService;
+import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,30 +28,41 @@ public class PetListController {
 
     @GetMapping("/petslist")
     public String petListPage(Model model) {
-        List<Pet> pets = petsService.findAll();
+        return petListPageSort(1, null, "id", "asc", model);
+    }
+
+    @GetMapping("/petslist/{pageNum}")
+    public String petListPageSort(@PathVariable(value = "pageNum") int pageNum,
+                              @Param("keyword") String keyword,
+                              @Param("field") String field,
+                              @Param("sortDir") String sortDir,
+                              Model model) {
+        Page<Pet> page = petsService.findAllByKeyword(pageNum,null,field,sortDir);
+        int totalPages;
+        if (page.getTotalPages() != 0)
+            totalPages = page.getTotalPages();
+        else
+            totalPages = 1;
+
+        List<Pet> pets = page.getContent();
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", totalPages);
         model.addAttribute("pets", pets);
+        model.addAttribute("field", field);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("keyword", keyword);
+
         return "petListPage";
     }
 
-    @GetMapping("/breeders")
-    public String breedersPage(Model model) {
-        return "notReadyPage";
-    }
 
-    @GetMapping("/nurseries")
-    public String nurseriesPage(Model model) {
-        return "notReadyPage";
-    }
 
-    @GetMapping("pet/{id}")
+    @GetMapping("/pet/{id}")
     public String petPage(@PathVariable(value = "id") int id, Model model) {
         Pet pet = petsService.findById(id);
         model.addAttribute("pet", pet);
         return "petPage";
     }
-
-
-
-
 
 }
