@@ -14,7 +14,7 @@ public class Pet {
     @Column(name = "typeOfPet")
     private String typeOfPet; // Собака/кошка
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition="text")
     private String description;
 
     @Column(name = "gender")
@@ -107,7 +107,6 @@ public class Pet {
     }
 
     /**
-     *
      * @param avatar название изображения (например dog1.jpeg), располоэенного в ресурсах ./src/main/resources/static/img/pets/
      * @return
      */
