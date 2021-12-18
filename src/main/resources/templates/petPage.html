@@ -43,8 +43,8 @@
             <div class="col p-4 d-flex flex-column position-static">
                 <strong class="d-inline-block mb-2 text-success" th:text="${pet.typeOfPet}"></strong>
                 <h3 class="mb-0" th:text="${pet.name}"></h3>
-                <div class="mb-1 text-muted" th:text="${pet.age}+' мес'"></div>
-                <p class="mb-auto" th:text="${pet.description}"></p>
+                <div class="mb-3 text-muted" th:text="${pet.age}+' мес'"></div>
+                <p style="padding: 20px; border: 2px solid #f3c30c; border-radius: 0.25rem;" th:text="${pet.description}"></p>
             </div>
         </div>
     </div>
