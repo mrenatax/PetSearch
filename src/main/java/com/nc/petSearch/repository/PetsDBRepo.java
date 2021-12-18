@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -23,13 +24,13 @@ public interface PetsDBRepo extends JpaRepository<Pet, Integer> {
     @Query(value = "select * from pet order by size desc", nativeQuery = true)
     List<Pet> sortBySizeDescending();
 
-    List<Pet> findAllByAge(int age);
+    List<Pet> findAllByBirthDate(LocalDate birthDate);
 
-    @Query(value = "select * from pet order by age", nativeQuery = true)
-    List<Pet> sortByAgeAscending();
+    @Query(value = "select * from pet order by birth_date", nativeQuery = true)
+    List<Pet> sortByBirthDateAscending();
 
-    @Query(value = "select * from pet order by age desc", nativeQuery = true)
-    List<Pet> sortByAgeDescending();
+    @Query(value = "select * from pet order by birth_date desc", nativeQuery = true)
+    List<Pet> sortByBirthDateDescending();
 
     @Query(value = "select*from pet order by name", nativeQuery = true)
     List<Pet> sortByNameAlphabetically();

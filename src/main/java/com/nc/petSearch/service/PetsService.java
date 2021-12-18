@@ -5,6 +5,7 @@ import com.nc.petSearch.repository.PetsDBRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -113,11 +114,11 @@ public class PetsService {
     /**
      * Поиск домашних животных по возрасту (фильтрация по заданному возрасту)
      *
-     * @param age возраст в месяцах
+     * @param birthDate возраст в месяцах
      * @return List<Pet>
      */
-    public List<Pet> findAllByAge(int age) {
-        return petsDBRepo.findAllByAge(age);
+    public List<Pet> findAllByBirthDate(LocalDate birthDate) {
+        return petsDBRepo.findAllByBirthDate(birthDate);
     }
 
     /**
@@ -125,8 +126,8 @@ public class PetsService {
      *
      * @return List<Pet>
      */
-    public List<Pet> sortByAgeAscending() {
-        return petsDBRepo.sortByAgeAscending();
+    public List<Pet> sortByBirthDateAscending() {
+        return petsDBRepo.sortByBirthDateAscending();
     }
 
     /**
@@ -134,7 +135,7 @@ public class PetsService {
      *
      * @return List<Pet>
      */
-    public List<Pet> sortByAgeDescending() {
-        return petsDBRepo.sortByAgeDescending();
+    public List<Pet> sortByBirtDateDescending() {
+        return petsDBRepo.sortByBirthDateDescending();
     }
 }
