@@ -1,6 +1,8 @@
 package com.nc.petSearch.entity;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 public class Pet {
@@ -14,7 +16,7 @@ public class Pet {
     @Column(name = "typeOfPet")
     private String typeOfPet; // Собака/кошка
 
-    @Column(name = "description", columnDefinition="text")
+    @Column(name = "description", columnDefinition = "text")
     private String description;
 
     @Column(name = "gender")
@@ -22,9 +24,6 @@ public class Pet {
 
     @Column(name = "size")
     private int size;
-
-    @Column(name = "age")
-    private int age; // возраст в месяцах
 
     @Column(name = "avatar")
     private String avatar;
@@ -34,6 +33,11 @@ public class Pet {
 
     @Column(name = "minorPictureForDescription")
     private String minorPictureForDescription;
+
+    @Column(name = "birthDate")
+    private LocalDate birthDate; // дата рождения
+
+    private long age; // возраст в месяцах
 
 
     public Pet() {
@@ -97,15 +101,6 @@ public class Pet {
         return size;
     }
 
-    public Pet setAge(int age) {
-        this.age = age;
-        return this;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
     /**
      * @param avatar название изображения (например dog1.jpeg), располоэенного в ресурсах ./src/main/resources/static/img/pets/
      * @return
@@ -137,6 +132,24 @@ public class Pet {
         return minorPictureForDescription;
     }
 
+    public Pet setAge(LocalDate currentDate) {
+        this.age = ChronoUnit.MONTHS.between(birthDate, currentDate);
+        return this;
+    }
+
+    public long getAge() {
+        return age;
+    }
+
+    public Pet setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+        return this;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
     @Override
     public String toString() {
         return "Pet{" +
@@ -146,6 +159,10 @@ public class Pet {
                 ", description='" + description + '\'' +
                 ", gender='" + gender + '\'' +
                 ", size=" + size +
+                ", avatar='" + avatar + '\'' +
+                ", pictureForDescription='" + pictureForDescription + '\'' +
+                ", minorPictureForDescription='" + minorPictureForDescription + '\'' +
+                ", birthDate=" + birthDate +
                 ", age=" + age +
                 '}';
     }
