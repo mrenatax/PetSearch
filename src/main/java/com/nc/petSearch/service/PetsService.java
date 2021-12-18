@@ -1,7 +1,7 @@
 package com.nc.petSearch.service;
 
 import com.nc.petSearch.entity.Pet;
-import com.nc.petSearch.repository.PetsDBRepo;
+import com.nc.petSearch.repository.PetsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +12,10 @@ import java.util.List;
 public class PetsService {
 
     @Autowired
-    private final PetsDBRepo petsDBRepo;
+    private final PetsRepo petsDBRepo;
 
-    public PetsService(PetsDBRepo petsDBRepo) {
-        this.petsDBRepo = petsDBRepo;
+    public PetsService(PetsRepo petsRepo) {
+        this.petsDBRepo = petsRepo;
     }
 
     public void createPet(Pet pet) {
