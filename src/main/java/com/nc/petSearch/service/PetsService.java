@@ -10,41 +10,42 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
 public class PetsService {
 
     @Autowired
-    private final PetsRepo petsDBRepo;
+    private final PetsRepo petsRepo;
 
-    public PetsService(PetsRepo petsDBRepo) {
-        this.petsDBRepo = petsDBRepo;
+    public PetsService(PetsRepo petsRepo) {
+        this.petsRepo = petsRepo;
     }
 
     public void createPet(Pet pet) {
-        petsDBRepo.save(pet);
+        petsRepo.save(pet);
     }
 
     public void removePet(Pet pet) {
-        petsDBRepo.delete(pet);
+        petsRepo.delete(pet);
     }
 
     public Page<Pet> findAll(int pageNum, String field, String sortDir) {
         Pageable pageable = PageRequest.of(pageNum-1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
                 : Sort.by(field).descending());
-        return petsDBRepo.findAll(pageable);
+        return petsRepo.findAll(pageable);
 
     }
 
     public List<Pet> findAllForUser() {
-        List<Pet> result = new ArrayList<Pet>();
-        petsDBRepo.findAll().forEach(result::add);
+        List<Pet> result = new ArrayList<>();
+        petsRepo.findAll().forEach(result::add);
         return result;
     }
 
     public Pet findById(int id) {
-        return petsDBRepo.findById(id).orElse(null);
+        return petsRepo.findById(id).orElse(null);
     }
 
     public Page<Pet> findAllByKeyword(int pageNum,String keyword, String field, String sortDir) {
@@ -53,9 +54,9 @@ public class PetsService {
                 : Sort.by(field).descending());
 
         if (keyword != null) {
-            return petsDBRepo.findAllByKeyword(keyword, pageable);
+            return petsRepo.findAllByKeyword(keyword, pageable);
         }
-        return petsDBRepo.findAll(pageable);
+        return petsRepo.findAll(pageable);
     }
 
 
@@ -66,7 +67,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllByName(String name) {
-        return petsDBRepo.findAllByName(name);
+        return petsRepo.findAllByName(name);
     }
 
     /**
@@ -76,7 +77,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllByTypeOfPet(String typeOfPet) {
-        return petsDBRepo.findAllByTypeOfPet(typeOfPet);
+        return petsRepo.findAllByTypeOfPet(typeOfPet);
     }
 
     /**
@@ -86,7 +87,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllByGender(String gender) {
-        return petsDBRepo.findAllByGender(gender);
+        return petsRepo.findAllByGender(gender);
     }
 
     /**
@@ -96,7 +97,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllBySize(int size) {
-        return petsDBRepo.findAllBySize(size);
+        return petsRepo.findAllBySize(size);
     }
 
     /**
@@ -105,7 +106,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> sortBySizeAscending() {
-        return petsDBRepo.sortBySizeAscending();
+        return petsRepo.sortBySizeAscending();
     }
 
     /**
@@ -114,7 +115,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> sortBySizeDescending() {
-        return petsDBRepo.sortBySizeDescending();
+        return petsRepo.sortBySizeDescending();
     }
 
     /**
@@ -123,7 +124,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> sortByNameAlphabetically() {
-        return petsDBRepo.sortByNameAlphabetically();
+        return petsRepo.sortByNameAlphabetically();
     }
 
     /**
@@ -133,17 +134,17 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findByDescriptionContainingIgnoreCase(String phrase) {
-        return petsDBRepo.findByDescriptionContainingIgnoreCase(phrase);
+        return petsRepo.findByDescriptionContainingIgnoreCase(phrase);
     }
 
     /**
      * Поиск домашних животных по возрасту (фильтрация по заданному возрасту)
      *
-     * @param age возраст в месяцах
+     * @param birthDate возраст в месяцах
      * @return List<Pet>
      */
-    public List<Pet> findAllByAge(int age) {
-        return petsDBRepo.findAllByAge(age);
+    public List<Pet> findAllByBirthDate(LocalDate birthDate) {
+        return petsRepo.findAllByBirthDate(birthDate);
     }
 
     /**
@@ -151,8 +152,8 @@ public class PetsService {
      *
      * @return List<Pet>
      */
-    public List<Pet> sortByAgeAscending() {
-        return petsDBRepo.sortByAgeAscending();
+    public List<Pet> sortByBirthDateAscending() {
+        return petsRepo.sortByBirthDateAscending();
     }
 
     /**
@@ -160,7 +161,7 @@ public class PetsService {
      *
      * @return List<Pet>
      */
-    public List<Pet> sortByAgeDescending() {
-        return petsDBRepo.sortByAgeDescending();
+    public List<Pet> sortByBirtDateDescending() {
+        return petsRepo.sortByBirthDateDescending();
     }
 }
