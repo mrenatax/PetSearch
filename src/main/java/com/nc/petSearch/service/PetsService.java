@@ -1,7 +1,7 @@
 package com.nc.petSearch.service;
 
 import com.nc.petSearch.entity.Pet;
-import com.nc.petSearch.repository.PetsDBRepo;
+import com.nc.petSearch.repository.PetsRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,9 +21,9 @@ import java.util.List;
 public class PetsService {
 
     @Autowired
-    private final PetsDBRepo petsDBRepo;
+    private final PetsRepo petsDBRepo;
 
-    public PetsService(PetsDBRepo petsDBRepo) {
+    public PetsService(PetsRepo petsDBRepo) {
         this.petsDBRepo = petsDBRepo;
     }
 
