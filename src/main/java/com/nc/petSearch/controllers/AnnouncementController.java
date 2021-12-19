@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +44,7 @@ public class AnnouncementController {
         String img = "/img/pets/dog1.jpeg";
         Pet pet = new Pet(breed,animalType,description,gender,img);
         petsService.createPet(pet);
+        //TODO pet.setBirthDate(LocalDate.parse(dateOfBirth)).setAge(LocalDate.now());
         return "redirect:/my-announcements";
     }
 
