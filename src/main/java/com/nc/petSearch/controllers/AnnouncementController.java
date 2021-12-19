@@ -3,6 +3,7 @@ package com.nc.petSearch.controllers;
 import com.nc.petSearch.entity.Pet;
 import com.nc.petSearch.service.PetsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,19 +22,20 @@ public class AnnouncementController {
     @Autowired
     PetsService petsService;
 
-    @GetMapping("/add-announcement")
+    @GetMapping("/admin/add-announcement")
     public String addAnnouncement(Model model) {
         return "addingPage";
     }
 
-    @GetMapping("/my-announcements")
+    @GetMapping("/admin/my-announcements")
     public String myAnnouncements(Model model) {
         List<Pet> pets = petsService.findAllForUser();
         model.addAttribute("pets", pets);
         return "myAnnouncementsPage";
     }
 
-    @PostMapping("/add-announcement")
+
+    @PostMapping("/admin/add-announcement")
     public String addAnnouncementPost(@RequestParam("animalType") String animalType,
                                       @RequestParam String breed,
                                       @RequestParam("gender") String gender,
@@ -45,17 +47,18 @@ public class AnnouncementController {
         Pet pet = new Pet(breed,animalType,description,gender,img);
         petsService.createPet(pet);
         //TODO pet.setBirthDate(LocalDate.parse(dateOfBirth)).setAge(LocalDate.now());
-        return "redirect:/my-announcements";
+        return "redirect:/admin/my-announcements";
     }
 
-    @GetMapping("/pet/{id}/edit")
+    @GetMapping("/admin/pet/{id}/edit")
     public String editAnnouncement(@PathVariable(value = "id") int id, Model model) {
         Pet pet = petsService.findById(id);
         model.addAttribute("pet", pet);
         return "editingPage";
     }
 
-    @PostMapping("/pet/{id}/edit")
+
+    @PostMapping("/admin/pet/{id}/edit")
     public String editAnnouncementPost(@PathVariable(value = "id") int id,
                                         @RequestParam("animalType") String animalType,
                                         @RequestParam String breed,
@@ -70,17 +73,17 @@ public class AnnouncementController {
         pet.setTypeOfPet(animalType).setName(breed).setGender(gender).setDescription(description);
         petsService.createPet(pet);
 
-        return "redirect:/my-announcements";
+        return "redirect:/admin/my-announcements";
     }
 
-    @PostMapping("/pet/{id}/remove")
+    @PostMapping("/admin/pet/{id}/remove")
     public String removeAnnouncementPost(@PathVariable(value = "id") int id,
                                        Model model) {
 
         Pet pet = petsService.findById(id);
         petsService.removePet(pet);
 
-        return "redirect:/my-announcements";
+        return "redirect:/admin/my-announcements";
     }
 
 }
