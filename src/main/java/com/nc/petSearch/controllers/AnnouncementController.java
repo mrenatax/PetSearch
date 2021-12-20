@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -44,9 +45,9 @@ public class AnnouncementController {
                                       @RequestParam("photoOfPet") MultipartFile photoOfPet,
                                       Model model) {
         String img = "/img/pets/dog1.jpeg";
-        Pet pet = new Pet(breed,animalType,description,gender,img);
+        Pet pet = new Pet(breed,animalType,description,gender,img,dateOfBirth);
+        pet.setAge(LocalDate.now());
         petsService.createPet(pet);
-        //TODO pet.setBirthDate(LocalDate.parse(dateOfBirth)).setAge(LocalDate.now());
         return "redirect:/admin/my-announcements";
     }
 
@@ -70,9 +71,8 @@ public class AnnouncementController {
 
         String img = "/img/pets/dog1.jpeg";
         Pet pet = petsService.findById(id);
-        pet.setTypeOfPet(animalType).setName(breed).setGender(gender).setDescription(description);
+        pet.setTypeOfPet(animalType).setName(breed).setGender(gender).setDescription(description).setBirthDate(LocalDate.parse(dateOfBirth)).setAge(LocalDate.now());
         petsService.createPet(pet);
-
         return "redirect:/admin/my-announcements";
     }
 
