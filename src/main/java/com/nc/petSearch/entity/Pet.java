@@ -2,7 +2,6 @@ package com.nc.petSearch.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 @Entity
@@ -44,18 +43,18 @@ public class Pet {
     public Pet() {
     }
 
-    public Pet(String name, String typeOfPet, String description, String gender, String avatar, String dateOfBirth) {
+    public Pet(String name, String typeOfPet, String description, String gender, String dateOfBirth) {
         this.name = name;
         this.typeOfPet = typeOfPet;
         this.description = description;
         this.gender = gender;
-        this.avatar = avatar;
         this.birthDate = LocalDate.parse(dateOfBirth);
     }
 
     public Pet(String name) {
         this.name = name;
     }
+
 
     public Pet setName(String petName) {
         this.name = petName;
@@ -116,7 +115,7 @@ public class Pet {
      * @return Pet
      */
     public Pet setAvatar(String avatar) {
-        this.avatar = "./src/main/resources/static/img/pets/" + avatar;
+        this.avatar = "/img/pets/" + getId()+"/"+ avatar;
         return this;
     }
 
@@ -124,8 +123,12 @@ public class Pet {
         return avatar;
     }
 
+    public String getPhotoPath() {
+        return "./src/main/resources/static/img/pets/" + getId()+"/";
+    }
+
     public Pet setPictureForDescription(String pic) {
-        this.pictureForDescription = "./src/main/resources/static/img/pets/" + pic;
+        this.pictureForDescription = "/img/pets/" + getId()+"/"+ pic;
         return this;
     }
 
@@ -134,7 +137,7 @@ public class Pet {
     }
 
     public Pet setMinorPictureForDescription(String pic) {
-        this.minorPictureForDescription = "./src/main/resources/static/img/pets/" + pic;
+        this.minorPictureForDescription = "/img/pets/" + getId()+"/"+ pic;
         return this;
     }
 
@@ -160,11 +163,6 @@ public class Pet {
         return birthDate;
     }
 
-    public String getStringBirthDate(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-M-yyyy");
-        String formattedString = getBirthDate().format(formatter);
-        return formattedString;
-    }
 
 
     @Override

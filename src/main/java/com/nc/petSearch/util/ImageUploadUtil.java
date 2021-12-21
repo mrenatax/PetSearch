@@ -10,8 +10,8 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
 public class ImageUploadUtil {
-    public static void savePicture(String fileName, MultipartFile picture) throws IOException {
-        Path uploadPath = Paths.get("./src/main/resources/static/img/pets/");
+    public static void savePicture(String dir, String fileName, MultipartFile picture) throws IOException {
+        Path uploadPath = Paths.get(dir);
 
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);

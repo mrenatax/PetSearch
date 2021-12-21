@@ -11,10 +11,10 @@
 <section id="animal-list">
     <div class="container">
         <div class="row" style="margin-top: 20px;">
-            <div th:each="element : ${pets}" class="col-xxl-3 col-lg-4 col-sm-6">
+            <div th:each="element : ${pets}" class="col-xxl-3 col-lg-4 col-sm-12">
                 <a th:href="'/pet/'+${element.id}" class="card-href">
                     <div class="pet-card my-2" style="width: 18rem;">
-                        <img src="/img/pets/dog1.jpeg" class="card-img-top" alt="">
+                        <img th:src="${element.avatar}" class="card-img-top" alt="" style="height: 216px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${element.name}"></h5>
                             <h6 class="card-info-age text-muted" th:text="${element.typeOfPet}"></h6>

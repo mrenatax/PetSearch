@@ -2,7 +2,6 @@ package com.nc.petSearch.controllers;
 
 import com.nc.petSearch.entity.Pet;
 import com.nc.petSearch.service.PetsService;
-import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Controller

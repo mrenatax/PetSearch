@@ -13,7 +13,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 col-sm-10">
-                <div id="pet-photo-carousel" class="carousel slide" data-bs-ride="carousel">
+                <div id="pet-photo-carousel" class="carousel slide mb-3" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#pet-photo-carousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#pet-photo-carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -21,13 +21,13 @@
                     </div>
                     <div class="carousel-inner" style="max-height: 500px;">
                         <div class="carousel-item active">
-                            <img src="/img/pets/dog1.jpeg" class="d-block w-100" alt="...">
+                            <img th:src="${pet.avatar}" class="d-block w-100" alt="Pet avatar" style="max-height: 500px; object-fit: cover;">
                         </div>
                         <div class="carousel-item">
-                            <img src="/img/pets/dog1.jpeg" class="d-block w-100" alt="...">
+                            <img th:src="${pet.pictureForDescription}" class="d-block w-100" alt="Pet description photo">
                         </div>
                         <div class="carousel-item">
-                            <img src="/img/pets/dog1.jpeg" class="d-block w-100" alt="...">
+                            <img th:src="${pet.minorPictureForDescription}" class="d-block w-100" alt="Another pet description photo">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#pet-photo-carousel" data-bs-slide="prev">
