@@ -148,4 +148,11 @@ public class AnnouncementController {
         return "redirect:/admin/my-announcements";
     }
 
+    @GetMapping("/admin/pet/{id}")
+    public String adminPetPage(@PathVariable(value = "id") int id, Model model) {
+        Pet pet = petsService.findById(id);
+        model.addAttribute("pet", pet);
+        return "adminPetPage";
+    }
+
 }
