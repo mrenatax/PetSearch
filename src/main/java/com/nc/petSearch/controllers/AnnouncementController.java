@@ -49,7 +49,7 @@ public class AnnouncementController {
                                       @RequestParam("minorDescPic") MultipartFile minorDescPic,
                                       Model model) {
 
-        Pet pet = new Pet(breed,animalType,description,gender,dateOfBirth);
+        Pet pet = new Pet(breed, animalType, description, gender, dateOfBirth);
         pet.setAge(LocalDate.now());
         petsService.createPet(pet);
 
@@ -64,9 +64,9 @@ public class AnnouncementController {
         petsService.createPet(pet);
 
         try {
-            ImageUploadUtil.savePicture(pet.getPhotoPath() ,avatarName, avatar);
-            ImageUploadUtil.savePicture(pet.getPhotoPath() ,descPicName, descPic);
-            ImageUploadUtil.savePicture(pet.getPhotoPath() ,minorDescPicName, minorDescPic);
+            ImageUploadUtil.savePicture(pet.getPhotoPath(), avatarName, avatar);
+            ImageUploadUtil.savePicture(pet.getPhotoPath(), descPicName, descPic);
+            ImageUploadUtil.savePicture(pet.getPhotoPath(), minorDescPicName, minorDescPic);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,45 +84,45 @@ public class AnnouncementController {
 
     @PostMapping("/admin/pet/{id}/edit")
     public String editAnnouncementPost(@PathVariable(value = "id") int id,
-                                        @RequestParam("animalType") String animalType,
-                                        @RequestParam String breed,
-                                        @RequestParam("gender") String gender,
-                                        @RequestParam String dateOfBirth,
-                                        @RequestParam String description,
-                                        @RequestParam("avatar") MultipartFile avatar,
-                                        @RequestParam("descPic") MultipartFile descPic,
-                                        @RequestParam("minorDescPic") MultipartFile minorDescPic,
+                                       @RequestParam("animalType") String animalType,
+                                       @RequestParam String breed,
+                                       @RequestParam("gender") String gender,
+                                       @RequestParam String dateOfBirth,
+                                       @RequestParam String description,
+                                       @RequestParam("avatar") MultipartFile avatar,
+                                       @RequestParam("descPic") MultipartFile descPic,
+                                       @RequestParam("minorDescPic") MultipartFile minorDescPic,
                                        Model model) {
 
         Pet pet = petsService.findById(id);
         pet.setTypeOfPet(animalType).setName(breed).setGender(gender).setDescription(description).setBirthDate(LocalDate.parse(dateOfBirth)).setAge(LocalDate.now());
 
 
-        if(!avatar.isEmpty()) {
+        if (!avatar.isEmpty()) {
             String avatarName = StringUtils.cleanPath(avatar.getOriginalFilename());
             pet.setAvatar(avatarName);
             try {
-                ImageUploadUtil.savePicture(pet.getPhotoPath() ,avatarName, avatar);
+                ImageUploadUtil.savePicture(pet.getPhotoPath(), avatarName, avatar);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if(!descPic.isEmpty()) {
+        if (!descPic.isEmpty()) {
             String descPicName = StringUtils.cleanPath(descPic.getOriginalFilename());
             pet.setPictureForDescription(descPicName);
             try {
-                ImageUploadUtil.savePicture(pet.getPhotoPath() ,descPicName, descPic);
+                ImageUploadUtil.savePicture(pet.getPhotoPath(), descPicName, descPic);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        if(!minorDescPic.isEmpty()) {
+        if (!minorDescPic.isEmpty()) {
             String minorDescPicName = StringUtils.cleanPath(minorDescPic.getOriginalFilename());
             pet.setMinorPictureForDescription(minorDescPicName);
             try {
-                ImageUploadUtil.savePicture(pet.getPhotoPath() ,minorDescPicName, minorDescPic);
+                ImageUploadUtil.savePicture(pet.getPhotoPath(), minorDescPicName, minorDescPic);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -135,7 +135,7 @@ public class AnnouncementController {
 
     @PostMapping("/admin/pet/{id}/remove")
     public String removeAnnouncementPost(@PathVariable(value = "id") int id,
-                                       Model model) {
+                                         Model model) {
 
         Pet pet = petsService.findById(id);
         try {

@@ -50,10 +50,6 @@ public class SecurityConfiguration {
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID")
                     .logoutSuccessUrl("/");
-            //TODO обсудить добавление страницы, когда пользователь пытается получить доступ запрещенным для его роли ресурсам
-                    /*.and()
-                    .exceptionHandling()
-                    .accessDeniedPage("/users/access_denied");*/
         }
     }
 }

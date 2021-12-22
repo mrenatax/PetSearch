@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 
-
 @Controller
 public class PetListController {
 
@@ -32,11 +31,11 @@ public class PetListController {
 
     @GetMapping("/petslist/{pageNum}")
     public String petListPageSort(@PathVariable(value = "pageNum") int pageNum,
-                              @Param("keyword") String keyword,
-                              @Param("field") String field,
-                              @Param("sortDir") String sortDir,
-                              Model model) {
-        Page<Pet> page = petsService.findAllByKeyword(pageNum,null,field,sortDir);
+                                  @Param("keyword") String keyword,
+                                  @Param("field") String field,
+                                  @Param("sortDir") String sortDir,
+                                  Model model) {
+        Page<Pet> page = petsService.findAllByKeyword(pageNum, null, field, sortDir);
         int totalPages;
         if (page.getTotalPages() != 0)
             totalPages = page.getTotalPages();
@@ -54,8 +53,6 @@ public class PetListController {
 
         return "petListPage";
     }
-
-
 
     @GetMapping("/pet/{id}")
     public String petPage(@PathVariable(value = "id") int id, Model model) {

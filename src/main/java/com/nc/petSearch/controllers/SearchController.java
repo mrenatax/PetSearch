@@ -44,18 +44,18 @@ public class SearchController {
     }
 
     @GetMapping("/petslist/search")
-    public String searchPage(@Param("keyword") String keyword, Model model){
-        return petListSearch(1,"id","asc", keyword, model);
+    public String searchPage(@Param("keyword") String keyword, Model model) {
+        return petListSearch(1, "id", "asc", keyword, model);
     }
 
     @GetMapping("/kittens")
     public String getKittens(Model model) {
-        return petListSearch(1, "id", "asc","Котенок", model);
+        return petListSearch(1, "id", "asc", "Котенок", model);
     }
 
     @GetMapping("/puppies")
     public String getPuppies(Model model) {
-        return petListSearch(1, "id", "asc","Щенок", model);
+        return petListSearch(1, "id", "asc", "Щенок", model);
     }
 
 }

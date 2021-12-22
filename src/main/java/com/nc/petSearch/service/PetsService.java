@@ -32,7 +32,7 @@ public class PetsService {
     }
 
     public Page<Pet> findAll(int pageNum, String field, String sortDir) {
-        Pageable pageable = PageRequest.of(pageNum-1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
+        Pageable pageable = PageRequest.of(pageNum - 1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
                 : Sort.by(field).descending());
         return petsRepo.findAll(pageable);
 
@@ -48,7 +48,7 @@ public class PetsService {
         return petsRepo.findById(id).orElse(null);
     }
 
-    public Page<Pet> findAllByKeyword(int pageNum,String keyword, String field, String sortDir) {
+    public Page<Pet> findAllByKeyword(int pageNum, String keyword, String field, String sortDir) {
 
         Pageable pageable = PageRequest.of(pageNum - 1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
                 : Sort.by(field).descending());
@@ -130,7 +130,7 @@ public class PetsService {
     /**
      * Поиск питомцев, описание которых содержит указанную фразу
      *
-     * @param phrase
+     * @param phrase ключевое слово для поиска
      * @return List<Pet>
      */
     public List<Pet> findByDescriptionContainingIgnoreCase(String phrase) {

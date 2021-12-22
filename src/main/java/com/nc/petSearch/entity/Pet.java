@@ -115,7 +115,7 @@ public class Pet {
      * @return Pet
      */
     public Pet setAvatar(String avatar) {
-        this.avatar = "/img/pets/" + getId()+"/"+ avatar;
+        this.avatar = "/img/pets/" + getId() + "/" + avatar;
         return this;
     }
 
@@ -124,11 +124,11 @@ public class Pet {
     }
 
     public String getPhotoPath() {
-        return "./src/main/resources/static/img/pets/" + getId()+"/";
+        return "./src/main/resources/static/img/pets/" + getId() + "/";
     }
 
     public Pet setPictureForDescription(String pic) {
-        this.pictureForDescription = "/img/pets/" + getId()+"/"+ pic;
+        this.pictureForDescription = "/img/pets/" + getId() + "/" + pic;
         return this;
     }
 
@@ -137,7 +137,7 @@ public class Pet {
     }
 
     public Pet setMinorPictureForDescription(String pic) {
-        this.minorPictureForDescription = "/img/pets/" + getId()+"/"+ pic;
+        this.minorPictureForDescription = "/img/pets/" + getId() + "/" + pic;
         return this;
     }
 
@@ -162,7 +162,6 @@ public class Pet {
     public LocalDate getBirthDate() {
         return birthDate;
     }
-
 
 
     @Override

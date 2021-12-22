@@ -20,7 +20,7 @@ public interface PetsRepo extends PagingAndSortingRepository<Pet, Integer> {
 
     List<Pet> findAllBySize(int size);
 
-    @Query(value="SELECT * FROM pet WHERE CONCAT(name,' ',type_of_pet,' кошка собака',age,' месяца ',gender,' ', description) LIKE %?1%", nativeQuery = true)
+    @Query(value = "SELECT * FROM pet WHERE CONCAT(name,' ',type_of_pet,' кошка собака',age,' месяца ',gender,' ', description) LIKE %?1%", nativeQuery = true)
     Page<Pet> findAllByKeyword(String keyword, Pageable pageable);
 
     @Query(value = "select * from pet order by size", nativeQuery = true)
