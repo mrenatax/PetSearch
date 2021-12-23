@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
                             <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? ${keyword}:' '), field=name, sortDir=asc)}">Порода: в алфавитном порядке</a></li>
                             <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? ${keyword}:' '), field=age, sortDir=asc)}">Возраст: по возрастанию</a></li>
-                            <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? ${keyword}:' '), field=name, sortDir=desc)}">Возраст: по убыванию</a></li>
+                            <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? ${keyword}:' '), field=age, sortDir=desc)}">Возраст: по убыванию</a></li>
                         </ul>
                     </div>
                 </div>

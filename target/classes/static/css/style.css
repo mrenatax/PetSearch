@@ -200,4 +200,11 @@ input[type="search"]::-webkit-search-cancel-button {
         text-decoration: none;
 }
 
+#main-page {
+background-image: url(/img/job562-nunoon-10.jpg);
+}
+
+.footer {
+ color: #2c1c04;
+}
 

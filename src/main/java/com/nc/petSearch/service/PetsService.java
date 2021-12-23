@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 @Service
 public class PetsService {
@@ -54,7 +55,7 @@ public class PetsService {
                 : Sort.by(field).descending());
 
         if (keyword != null) {
-            return petsRepo.findAllByKeyword(keyword, pageable);
+            return petsRepo.findAllByKeyword(keyword.toUpperCase(Locale.ROOT), pageable);
         }
         return petsRepo.findAll(pageable);
     }

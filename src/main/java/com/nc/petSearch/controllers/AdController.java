@@ -20,26 +20,26 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-public class AnnouncementController {
+public class AdController {
 
     @Autowired
     PetsService petsService;
 
-    @GetMapping("/admin/add-announcement")
-    public String addAnnouncement(Model model) {
+    @GetMapping("/admin/add-ad")
+    public String addAd(Model model) {
         return "addingPage";
     }
 
-    @GetMapping("/admin/my-announcements")
-    public String myAnnouncements(Model model) {
+    @GetMapping("/admin/my-ads")
+    public String myAds(Model model) {
         List<Pet> pets = petsService.findAllForUser();
         model.addAttribute("pets", pets);
-        return "myAnnouncementsPage";
+        return "myAdsPage";
     }
 
 
-    @PostMapping("/admin/add-announcement")
-    public String addAnnouncementPost(@RequestParam("animalType") String animalType,
+    @PostMapping("/admin/add-ad")
+    public String addAdPost(@RequestParam("animalType") String animalType,
                                       @RequestParam String breed,
                                       @RequestParam("gender") String gender,
                                       @RequestParam String dateOfBirth,
@@ -71,11 +71,11 @@ public class AnnouncementController {
             e.printStackTrace();
         }
 
-        return "redirect:/admin/my-announcements";
+        return "redirect:/admin/my-ads";
     }
 
     @GetMapping("/admin/pet/{id}/edit")
-    public String editAnnouncement(@PathVariable(value = "id") int id, Model model) {
+    public String editAd(@PathVariable(value = "id") int id, Model model) {
         Pet pet = petsService.findById(id);
         model.addAttribute("pet", pet);
         return "editingPage";
@@ -83,7 +83,7 @@ public class AnnouncementController {
 
 
     @PostMapping("/admin/pet/{id}/edit")
-    public String editAnnouncementPost(@PathVariable(value = "id") int id,
+    public String editAdPost(@PathVariable(value = "id") int id,
                                        @RequestParam("animalType") String animalType,
                                        @RequestParam String breed,
                                        @RequestParam("gender") String gender,
@@ -130,11 +130,11 @@ public class AnnouncementController {
 
         petsService.createPet(pet);
 
-        return "redirect:/admin/my-announcements";
+        return "redirect:/admin/my-ads";
     }
 
     @PostMapping("/admin/pet/{id}/remove")
-    public String removeAnnouncementPost(@PathVariable(value = "id") int id,
+    public String removeAdPost(@PathVariable(value = "id") int id,
                                          Model model) {
 
         Pet pet = petsService.findById(id);
@@ -145,7 +145,7 @@ public class AnnouncementController {
         }
         petsService.removePet(pet);
 
-        return "redirect:/admin/my-announcements";
+        return "redirect:/admin/my-ads";
     }
 
     @GetMapping("/admin/pet/{id}")
