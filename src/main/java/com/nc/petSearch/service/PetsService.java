@@ -8,48 +8,42 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Service
 public class PetsService {
 
-    @Autowired
-    private final PetsRepo petsDBRepo;
+    private final PetsRepo petsRepo;
 
+    @Autowired
     public PetsService(PetsRepo petsDBRepo) {
-        this.petsDBRepo = petsDBRepo;
+        this.petsRepo = petsDBRepo;
     }
 
     public void createPet(Pet pet) {
-        petsDBRepo.save(pet);
+        petsRepo.save(pet);
     }
 
     public void removePet(Pet pet) {
-        petsDBRepo.delete(pet);
+        petsRepo.delete(pet);
     }
 
     public Page<Pet> findAll(int pageNum, String field, String sortDir) {
         Pageable pageable = PageRequest.of(pageNum-1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
                 : Sort.by(field).descending());
-        return petsDBRepo.findAll(pageable);
-
+        return petsRepo.findAll(pageable);
     }
 
     public List<Pet> findAllForUser() {
         List<Pet> result = new ArrayList<Pet>();
-        petsDBRepo.findAll().forEach(result::add);
+        petsRepo.findAll().forEach(result::add);
         return result;
     }
 
     public Pet findById(int id) {
-        return petsDBRepo.findById(id).orElse(null);
+        return petsRepo.findById(id).orElse(null);
     }
 
     public Page<Pet> findAllByKeyword(int pageNum,String keyword, String field, String sortDir) {
@@ -58,9 +52,9 @@ public class PetsService {
                 : Sort.by(field).descending());
 
         if (keyword != null) {
-            return petsDBRepo.findAllByKeyword(keyword, pageable);
+            return petsRepo.findAllByKeyword(keyword, pageable);
         }
-        return petsDBRepo.findAll(pageable);
+        return petsRepo.findAll(pageable);
     }
 
 
@@ -71,7 +65,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllByName(String name) {
-        return petsDBRepo.findAllByName(name);
+        return petsRepo.findAllByName(name);
     }
 
     /**
@@ -81,7 +75,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllByTypeOfPet(String typeOfPet) {
-        return petsDBRepo.findAllByTypeOfPet(typeOfPet);
+        return petsRepo.findAllByTypeOfPet(typeOfPet);
     }
 
     /**
@@ -91,7 +85,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllByGender(String gender) {
-        return petsDBRepo.findAllByGender(gender);
+        return petsRepo.findAllByGender(gender);
     }
 
     /**
@@ -101,7 +95,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllBySize(int size) {
-        return petsDBRepo.findAllBySize(size);
+        return petsRepo.findAllBySize(size);
     }
 
     /**
@@ -110,7 +104,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> sortBySizeAscending() {
-        return petsDBRepo.sortBySizeAscending();
+        return petsRepo.sortBySizeAscending();
     }
 
     /**
@@ -119,7 +113,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> sortBySizeDescending() {
-        return petsDBRepo.sortBySizeDescending();
+        return petsRepo.sortBySizeDescending();
     }
 
     /**
@@ -128,7 +122,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> sortByNameAlphabetically() {
-        return petsDBRepo.sortByNameAlphabetically();
+        return petsRepo.sortByNameAlphabetically();
     }
 
     /**
@@ -138,7 +132,7 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findByDescriptionContainingIgnoreCase(String phrase) {
-        return petsDBRepo.findByDescriptionContainingIgnoreCase(phrase);
+        return petsRepo.findByDescriptionContainingIgnoreCase(phrase);
     }
 
     /**
@@ -148,24 +142,24 @@ public class PetsService {
      * @return List<Pet>
      */
     public List<Pet> findAllByAge(int age) {
-        return petsDBRepo.findAllByAge(age);
+        return petsRepo.findAllByAge(age);
     }
 
     /**
-     * Сортировака по возрасту в порядке возрастания
+     * Сортировка по возрасту в порядке возрастания
      *
      * @return List<Pet>
      */
     public List<Pet> sortByAgeAscending() {
-        return petsDBRepo.sortByAgeAscending();
+        return petsRepo.sortByAgeAscending();
     }
 
     /**
-     * Сортировака по возрасту в порядке убывания
+     * Сортировка по возрасту в порядке убывания
      *
      * @return List<Pet>
      */
     public List<Pet> sortByAgeDescending() {
-        return petsDBRepo.sortByAgeDescending();
+        return petsRepo.sortByAgeDescending();
     }
 }

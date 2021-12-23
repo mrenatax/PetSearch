@@ -3,16 +3,14 @@ package com.nc.petSearch.repository;
 import com.nc.petSearch.entity.Pet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @Repository
-public interface PetsDBRepo extends PagingAndSortingRepository<Pet, Integer> {
+public interface PetsRepo extends PagingAndSortingRepository<Pet, Integer> {
     List<Pet> findAllByName(String name);
 
     List<Pet> findAllByTypeOfPet(String typeOfPet);

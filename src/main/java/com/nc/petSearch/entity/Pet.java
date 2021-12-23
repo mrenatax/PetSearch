@@ -1,8 +1,15 @@
 package com.nc.petSearch.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.util.function.Supplier;
 
 @Entity
+@Builder
+@AllArgsConstructor
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -115,7 +122,7 @@ public class Pet {
     }
 
     /**
-     * @param avatar название изображения (например dog1.jpeg), располоэенного в ресурсах ./src/main/resources/static/img/pets/
+     * @param avatar название изображения (например dog1.jpeg), расположенного в ресурсах ./src/main/resources/static/img/pets/
      * @return
      */
     public Pet setAvatar(String avatar) {
