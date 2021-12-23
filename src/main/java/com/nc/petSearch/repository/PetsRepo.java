@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface PetsRepo extends PagingAndSortingRepository<Pet, Integer> {
+    //TODO почему часть методов возвращает просто список, а часть уже классы с пагинацией?
     List<Pet> findAllByName(String name);
 
     List<Pet> findAllByTypeOfPet(String typeOfPet);
@@ -20,9 +21,12 @@ public interface PetsRepo extends PagingAndSortingRepository<Pet, Integer> {
 
     List<Pet> findAllBySize(int size);
 
+    //TODO оч странный запрос, идея с конкатенацией понятна, но зачем в нее добавлять про кошку, собаку и месяц,
+    // из-за этого поиск будет выдавать все карточки сразу, если ввести в поиск эти слова
     @Query(value = "SELECT * FROM pet WHERE CONCAT(name,' ',type_of_pet,' кошка собака',age,' месяца ',gender,' ', description) LIKE %?1%", nativeQuery = true)
     Page<Pet> findAllByKeyword(String keyword, Pageable pageable);
 
+    //TODO все эти методы можно было сделать и без нэтив кверей, так же если они у вас совсем не используются, нужно удалить
     @Query(value = "select * from pet order by size", nativeQuery = true)
     List<Pet> sortBySizeAscending();
 

@@ -18,6 +18,7 @@ public class SearchController {
     @Autowired
     private PetsService petsService;
 
+    //TODO этот метод же есть 1 в 1 в другом контроллере
     @GetMapping("/petslist/search/{pageNum}")
     public String petListSearch(@PathVariable(value = "pageNum") int pageNum,
                                 @Param("field") String field,
@@ -43,11 +44,13 @@ public class SearchController {
         return "petListPage";
     }
 
+    //TODO этот тоже
     @GetMapping("/petslist/search")
     public String searchPage(@Param("keyword") String keyword, Model model) {
         return petListSearch(1, "id", "asc", keyword, model);
     }
 
+    //TODO в целом я не вижу смысла разделять это на 2 контроллера, эти методы можно было оставить в первом контроллере
     @GetMapping("/kittens")
     public String getKittens(Model model) {
         return petListSearch(1, "id", "asc", "Котенок", model);

@@ -35,7 +35,9 @@ public class PetListController {
                                   @Param("field") String field,
                                   @Param("sortDir") String sortDir,
                                   Model model) {
+        //TODO в запросе приходит keyword, здесь он почему-то игнорируется
         Page<Pet> page = petsService.findAllByKeyword(pageNum, null, field, sortDir);
+        //TODO какая-то странная часть, если были проблемы с обработкой этого на фронте, то и решать эту проблему нужно там
         int totalPages;
         if (page.getTotalPages() != 0)
             totalPages = page.getTotalPages();
@@ -54,6 +56,7 @@ public class PetListController {
         return "petListPage";
     }
 
+    //TODO контроллер называется PetLIST, здесь же возвращается один питомец
     @GetMapping("/pet/{id}")
     public String petPage(@PathVariable(value = "id") int id, Model model) {
         Pet pet = petsService.findById(id);

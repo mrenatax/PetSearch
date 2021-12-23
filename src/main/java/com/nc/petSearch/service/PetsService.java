@@ -41,6 +41,8 @@ public class PetsService {
     public List<Pet> findAllForUser() {
         List<Pet> result = new ArrayList<>();
         petsRepo.findAll().forEach(result::add);
+        //TODO из листа в лист перегоняем данные?)
+        //Ну и
         return result;
     }
 
