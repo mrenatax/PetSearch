@@ -1,15 +1,10 @@
 package com.nc.petSearch.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
-import java.util.function.Supplier;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
-@Builder
-@AllArgsConstructor
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,17 +16,15 @@ public class Pet {
     @Column(name = "typeOfPet")
     private String typeOfPet; // Собака/кошка
 
-    @Column(name = "description", columnDefinition="text")
+    @Column(name = "description", columnDefinition = "text")
     private String description;
 
     @Column(name = "gender")
     private String gender;
 
-    @Column(name = "size")//TODO взрослого животного?
+    //TODO что такое size у животного?
+    @Column(name = "size")
     private int size;
-
-    @Column(name = "age")//TODO в бд хранить др, а отображать возраст в месяцах
-    private int age; // возраст в месяцах
 
     @Column(name = "avatar")
     private String avatar;
@@ -42,21 +35,28 @@ public class Pet {
     @Column(name = "minorPictureForDescription")
     private String minorPictureForDescription;
 
+    @Column(name = "birthDate")
+    private LocalDate birthDate; // дата рождения
+
+    //TODO зачем хранить это в базе? Во-первых дублирование, во-вторых возраст меняется, а в таекущей реализации он остается всегда один на момент создания объявления
+    private long age; // возраст в месяцах
+
 
     public Pet() {
     }
 
-    public Pet(String name, String typeOfPet, String description, String gender, String avatar) {
+    public Pet(String name, String typeOfPet, String description, String gender, String dateOfBirth) {
         this.name = name;
         this.typeOfPet = typeOfPet;
         this.description = description;
         this.gender = gender;
-        this.avatar = avatar;
+        this.birthDate = LocalDate.parse(dateOfBirth);
     }
 
     public Pet(String name) {
         this.name = name;
     }
+
 
     public Pet setName(String petName) {
         this.name = petName;
@@ -112,21 +112,12 @@ public class Pet {
         return size;
     }
 
-    public Pet setAge(int age) {
-        this.age = age;
-        return this;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
     /**
-     * @param avatar название изображения (например dog1.jpeg), расположенного в ресурсах ./src/main/resources/static/img/pets/
-     * @return
+     * @param avatar название изображения (например dog1.jpeg), располоэенного в ресурсах ./src/main/resources/static/img/pets/
+     * @return Pet
      */
     public Pet setAvatar(String avatar) {
-        this.avatar = "./src/main/resources/static/img/pets/" + avatar;
+        this.avatar = "/img/pets/" + getId() + "/" + avatar;
         return this;
     }
 
@@ -134,8 +125,12 @@ public class Pet {
         return avatar;
     }
 
+    public String getPhotoPath() {
+        return "./src/main/resources/static/img/pets/" + getId() + "/";
+    }
+
     public Pet setPictureForDescription(String pic) {
-        this.pictureForDescription = "./src/main/resources/static/img/pets/" + pic;
+        this.pictureForDescription = "/img/pets/" + getId() + "/" + pic;
         return this;
     }
 
@@ -144,13 +139,32 @@ public class Pet {
     }
 
     public Pet setMinorPictureForDescription(String pic) {
-        this.minorPictureForDescription = "./src/main/resources/static/img/pets/" + pic;
+        this.minorPictureForDescription = "/img/pets/" + getId() + "/" + pic;
         return this;
     }
 
     public String getMinorPictureForDescription() {
         return minorPictureForDescription;
     }
+
+    public Pet setAge(LocalDate currentDate) {
+        this.age = ChronoUnit.MONTHS.between(birthDate, currentDate);
+        return this;
+    }
+
+    public long getAge() {
+        return age;
+    }
+
+    public Pet setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+        return this;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
 
     @Override
     public String toString() {
@@ -160,7 +174,10 @@ public class Pet {
                 ", typeOfPet='" + typeOfPet + '\'' +
                 ", description='" + description + '\'' +
                 ", gender='" + gender + '\'' +
-                ", size=" + size +
+                ", avatar='" + avatar + '\'' +
+                ", pictureForDescription='" + pictureForDescription + '\'' +
+                ", minorPictureForDescription='" + minorPictureForDescription + '\'' +
+                ", birthDate=" + birthDate +
                 ", age=" + age +
                 '}';
     }

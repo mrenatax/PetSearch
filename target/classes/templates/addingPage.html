@@ -14,7 +14,7 @@
     <section>
         <div class="container mt-5">
             <h2 class="d-inline-block mb-2 new-announce">Новое объявление</h2>
-            <form action="/add-announcement" method="post" enctype="multipart/form-data">
+            <form action="/admin/add-announcement" method="post" enctype="multipart/form-data">
                 <div style="padding: 20px;
                         border: 2px solid #2c1c04;
                         border-radius: 0.25rem;">
@@ -49,15 +49,23 @@
                     </div>
                     <div class="col-12 mb-3" id="sandbox-container">
                         <h5>Выберите дату рождения питомца</h5>
-                        <input type="text" name="dateOfBirth" class="form-control">
+                        <input type="text" name="dateOfBirth" class="form-control" required="" autocomplete="off">
                     </div>
                     <div class="col-6 mb-3">
                         <h5 for="description" class="form-label">Заполните описание</h5>
                         <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                     </div>
-                    <div class="mb-3">
-                        <h5 for="petPhoto" class="form-label">Загрузите фотографии</h5>
-                        <input type="file" name="photoOfPet" class="form-control" id="petPhoto">
+                    <div class="upload-photos">
+                        <h5>Загрузите фотографии животного</h5>
+                        <div class="mb-3">
+                            <input type="file" name="avatar" class="form-control" id="avatarPhoto" required="">
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" name="descPic" class="form-control" id="picForDescription" required="">
+                        </div>
+                        <div class="mb-3">
+                            <input type="file" name="minorDescPic" class="form-control" id="minorPicForDescription" required="">
+                        </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mb-5 mt-3">
@@ -72,7 +80,7 @@
 <script src="/js/bootstrap-datepicker.ru.min.js"></script>
 <script>
     $('#sandbox-container input').datepicker({
-        format: "dd-mm-yyyy",
+        format: "yyyy-mm-dd",
         language: "ru",
         autoclose: true
     });

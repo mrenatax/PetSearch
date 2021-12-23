@@ -41,6 +41,12 @@
                 </div>
             </div>
             <div class="col p-4 d-flex flex-column position-static">
+                <div id="edit-buttons" class="d-flex justify-content-start mb-3">
+                    <a th:href="'/admin/pet/'+${pet.id} +'/edit'" class="btn btn-warning me-3">Редактировать</a>
+                    <form th:action="@{/admin/pet/{id}/remove(id=${pet.id})}" th:method="post">
+                        <button class="btn btn-warning" type="submit">Удалить</button>
+                    </form>
+                </div>
                 <strong class="d-inline-block mb-2 text-success" th:text="${pet.typeOfPet}"></strong>
                 <h3 class="mb-0" th:text="${pet.name}"></h3>
                 <div class="mb-3 text-muted" th:text="${pet.age}+' мес'"></div>

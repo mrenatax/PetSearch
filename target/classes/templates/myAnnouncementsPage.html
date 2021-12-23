@@ -11,10 +11,10 @@
 <section id="animal-list">
     <div class="container">
         <div class="row" style="margin-top: 20px;">
-            <div th:each="element : ${pets}" class="col-xxl-3 col-lg-4 col-sm-6">
-                <a th:href="'/pet/'+${element.id}" class="card-href">
+            <div th:each="element : ${pets}" class="col-xxl-3 col-lg-4 col-sm-12">
+                <a th:href="'/admin/pet/'+${element.id}" class="card-href">
                     <div class="pet-card my-2" style="width: 18rem;">
-                        <img src="/img/pets/dog1.jpeg" class="card-img-top" alt="">
+                        <img th:src="${element.avatar}" class="card-img-top" alt="" style="height: 216px; object-fit: cover;">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${element.name}"></h5>
                             <h6 class="card-info-age text-muted" th:text="${element.typeOfPet}"></h6>
@@ -22,8 +22,8 @@
                             <h6 class="card-info-gender text-muted" th:text="'Пол: '+${element.gender}"></h6>
                             <p class="card-text mb-3" th:text="${element.description}" style="height: 72.017px"></p>
                             <div id="edit-buttons" class="d-flex justify-content-start">
-                                <a th:href="'/pet/'+${element.id} +'/edit'" class="btn btn-warning me-3">Редактировать</a>
-                                <form th:action="'/pet/'+${element.id} +'/remove'" method="post">
+                                <a th:href="'/admin/pet/'+${element.id} +'/edit'" class="btn btn-warning me-3">Редактировать</a>
+                                <form th:action="@{/admin/pet/{id}/remove(id=${element.id})}" th:method="post">
                                     <button class="btn btn-warning" type="submit">Удалить</button>
                                 </form>
                             </div>

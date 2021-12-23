@@ -2,7 +2,6 @@ package com.nc.petSearch.controllers;
 
 import com.nc.petSearch.entity.Pet;
 import com.nc.petSearch.service.PetsService;
-import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Controller
@@ -37,7 +35,9 @@ public class PetListController {
                                   @Param("field") String field,
                                   @Param("sortDir") String sortDir,
                                   Model model) {
+        //TODO в запросе приходит keyword, здесь он почему-то игнорируется
         Page<Pet> page = petsService.findAllByKeyword(pageNum, null, field, sortDir);
+        //TODO какая-то странная часть, если были проблемы с обработкой этого на фронте, то и решать эту проблему нужно там
         int totalPages;
         if (page.getTotalPages() != 0)
             totalPages = page.getTotalPages();
@@ -56,7 +56,7 @@ public class PetListController {
         return "petListPage";
     }
 
-
+    //TODO контроллер называется PetLIST, здесь же возвращается один питомец
     @GetMapping("/pet/{id}")
     public String petPage(@PathVariable(value = "id") int id, Model model) {
         Pet pet = petsService.findById(id);

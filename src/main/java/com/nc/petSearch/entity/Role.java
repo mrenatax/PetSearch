@@ -9,7 +9,7 @@ import java.util.Set;
 @Table(name = "roles")
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor//TODO @Data уже содержит в себе @RequiredArgsConstructor, зачем нужны эти?
 @Builder
 public class Role {
 
