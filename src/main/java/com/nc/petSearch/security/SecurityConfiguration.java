@@ -28,7 +28,8 @@ public class SecurityConfiguration {
                 .withUser("admin")
                 .password(passwordEncoder.encode("123"))
                 .roles("ADMIN");
-
+        //TODO как-то странно и ин-мемори аутентификация и сервис по отдаче пользователей,
+        // в целом если не успели сделать - ок, но тут вроде бы оставалось только маппинг между юзером и животными сделать
         auth.userDetailsService(userDetailsService);
     }
 

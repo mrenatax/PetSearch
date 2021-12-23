@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,26 +21,27 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Controller
-public class AdController {
+public class AnnouncementController {
 
     @Autowired
     PetsService petsService;
 
-    @GetMapping("/admin/add-ad")
-    public String addAd(Model model) {
+    @GetMapping("/admin/add-announcement")
+    public String addAnnouncement(Model model) {
         return "addingPage";
     }
 
-    @GetMapping("/admin/my-ads")
-    public String myAds(Model model) {
+    @GetMapping("/admin/my-announcements")
+    public String myAnnouncements(Model model) {
         List<Pet> pets = petsService.findAllForUser();
         model.addAttribute("pets", pets);
-        return "myAdsPage";
+        return "myAnnouncementsPage";
     }
 
 
-    @PostMapping("/admin/add-ad")
-    public String addAdPost(@RequestParam("animalType") String animalType,
+    //TODO нельзя было использовать @RequestBody?
+    @PostMapping("/admin/add-announcement")
+    public String addAnnouncementPost(@RequestParam("animalType") String animalType,
                                       @RequestParam String breed,
                                       @RequestParam("gender") String gender,
                                       @RequestParam String dateOfBirth,
@@ -48,7 +50,7 @@ public class AdController {
                                       @RequestParam("descPic") MultipartFile descPic,
                                       @RequestParam("minorDescPic") MultipartFile minorDescPic,
                                       Model model) {
-
+        //TODO вся бизнес логика должна быть на уровне сервиса
         Pet pet = new Pet(breed, animalType, description, gender, dateOfBirth);
         pet.setAge(LocalDate.now());
         petsService.createPet(pet);
@@ -62,6 +64,8 @@ public class AdController {
         pet.setMinorPictureForDescription(minorDescPicName);
 
         petsService.createPet(pet);
+        //TODO два запроса на создание? в чем смысл сохранить сущность с частью параметров,
+        // а потом сохранить вторую часть вторым запросом?)
 
         try {
             ImageUploadUtil.savePicture(pet.getPhotoPath(), avatarName, avatar);
@@ -71,19 +75,20 @@ public class AdController {
             e.printStackTrace();
         }
 
-        return "redirect:/admin/my-ads";
+        return "redirect:/admin/my-announcements";
     }
 
     @GetMapping("/admin/pet/{id}/edit")
-    public String editAd(@PathVariable(value = "id") int id, Model model) {
+    public String editAnnouncement(@PathVariable(value = "id") int id, Model model) {
         Pet pet = petsService.findById(id);
         model.addAttribute("pet", pet);
         return "editingPage";
     }
 
 
+    //TODO нельзя было использовать @RequestBody?
     @PostMapping("/admin/pet/{id}/edit")
-    public String editAdPost(@PathVariable(value = "id") int id,
+    public String editAnnouncementPost(@PathVariable(value = "id") int id,
                                        @RequestParam("animalType") String animalType,
                                        @RequestParam String breed,
                                        @RequestParam("gender") String gender,
@@ -97,6 +102,7 @@ public class AdController {
         Pet pet = petsService.findById(id);
         pet.setTypeOfPet(animalType).setName(breed).setGender(gender).setDescription(description).setBirthDate(LocalDate.parse(dateOfBirth)).setAge(LocalDate.now());
 
+        //TODO вся бизнес логика должна быть на уровне сервиса
 
         if (!avatar.isEmpty()) {
             String avatarName = StringUtils.cleanPath(avatar.getOriginalFilename());
@@ -128,24 +134,28 @@ public class AdController {
             }
         }
 
+        //TODO запрос на редактирование, тут колл на создание
         petsService.createPet(pet);
 
-        return "redirect:/admin/my-ads";
+        return "redirect:/admin/my-announcements";
     }
 
     @PostMapping("/admin/pet/{id}/remove")
-    public String removeAdPost(@PathVariable(value = "id") int id,
+    public String removeAnnouncementPost(@PathVariable(value = "id") int id,
                                          Model model) {
 
+        //TODO вся эта логика должна лежать в слое сервисов
+        //контроллер должен отвечать только за отдачу результата
         Pet pet = petsService.findById(id);
         try {
             FileUtils.deleteDirectory(new File(pet.getPhotoPath()));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //TODO а здесь будет IllegalArgumentException, т.к. у вас petsService.findById(id) может вернуть null
         petsService.removePet(pet);
 
-        return "redirect:/admin/my-ads";
+        return "redirect:/admin/my-announcements";
     }
 
     @GetMapping("/admin/pet/{id}")

@@ -15,6 +15,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     private UserRepo userRepo;
 
+    //TODO вместо того, чтобы так кастовать все классы, может стоило их просто унаследовать?
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepo.findUserByUsername(username)
@@ -28,6 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    //TODO почему не на конструкторе? В целом @Autowired не нужен, используя ломбок можно вообще красоту наводить,
+    // используя @RequiredArgsConstructor и объявляя все переменные, куда нужно заинжектить как final
     @Autowired
     public void setUserRepo(UserRepo userRepo) {
         this.userRepo = userRepo;

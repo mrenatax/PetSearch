@@ -22,6 +22,7 @@ public class Pet {
     @Column(name = "gender")
     private String gender;
 
+    //TODO что такое size у животного?
     @Column(name = "size")
     private int size;
 
@@ -37,6 +38,7 @@ public class Pet {
     @Column(name = "birthDate")
     private LocalDate birthDate; // дата рождения
 
+    //TODO зачем хранить это в базе? Во-первых дублирование, во-вторых возраст меняется, а в таекущей реализации он остается всегда один на момент создания объявления
     private long age; // возраст в месяцах
 
 
