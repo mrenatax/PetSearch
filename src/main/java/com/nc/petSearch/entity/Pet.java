@@ -1,10 +1,15 @@
 package com.nc.petSearch.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 @Entity
+@Builder
+@AllArgsConstructor
 public class Pet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

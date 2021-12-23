@@ -11,6 +11,7 @@ import org.mockito.Mock;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -43,7 +44,7 @@ public class PetsServiceTest {
                 .description(RandomStringUtils.randomAlphabetic(15))
                 .gender("female")
                 .size(ThreadLocalRandom.current().nextInt(1, 40))
-                .age(ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE))
+                .birthDate(LocalDate.now())
                 .avatar("/avatar.png")
                 .pictureForDescription("bigPicture")
                 .minorPictureForDescription("smallPicture")
@@ -185,14 +186,14 @@ public class PetsServiceTest {
         expectedPet.setDescription(expectedPet.getDescription().toUpperCase());
         List<Pet> expectedPetList = new ArrayList<>();
         expectedPetList.add(expectedPet);
-        given(petsRepo.findAllByAge(expectedPet.getAge())).willReturn(expectedPetList);
+        given(petsRepo.findAllByBirthDate(expectedPet.getBirthDate())).willReturn(expectedPetList);
 
         //when
-        List<Pet> actualPetList = petsService.findAllByAge(expectedPet.getAge());
+        List<Pet> actualPetList = petsService.findAllByBirthDate(expectedPet.getBirthDate());
 
         //then
         assertEquals(expectedPetList, actualPetList);
-        verify(petsRepo).findAllByAge(expectedPet.getAge());
+        verify(petsRepo).findAllByBirthDate(expectedPet.getBirthDate());
     }
 
     @Test
@@ -243,45 +244,31 @@ public class PetsServiceTest {
     }
 
     @Test
-    public void findAllByKeywordNullTest() {
-        //given
-        int pageNum = ThreadLocalRandom.current().nextInt(1, 5);
-        String field = RandomStringUtils.randomAlphabetic(5);
-        String sortDir = "asc";
-
-        //when
-        petsService.findAllByKeyword(pageNum, null, field, sortDir);
-
-        //then
-        verify(petsRepo).findAll(any(Pageable.class));
-    }
-
-    @Test
     public void sortByAgeAscendingTest() {
         //given
         List<Pet> expectedPetList = getPetList(10);
-        given(petsRepo.sortByAgeAscending()).willReturn(expectedPetList);
+        given(petsRepo.sortByBirthDateAscending()).willReturn(expectedPetList);
 
         //when
-        List<Pet> actualPetList = petsService.sortByAgeAscending();
+        List<Pet> actualPetList = petsService.sortByBirthDateAscending();
 
         //then
         assertEquals(expectedPetList, actualPetList);
-        verify(petsRepo).sortByAgeAscending();
+        verify(petsRepo).sortByBirthDateAscending();
     }
 
     @Test
     public void sortByAgeDescendingTest() {
         //given
         List<Pet> expectedPetList = getPetList(10);
-        given(petsRepo.sortByAgeDescending()).willReturn(expectedPetList);
+        given(petsRepo.sortByBirthDateDescending()).willReturn(expectedPetList);
 
         //when
-        List<Pet> actualPetList = petsService.sortByAgeDescending();
+        List<Pet> actualPetList = petsService.sortByBirthDateDescending();
 
         //then
         assertEquals(expectedPetList, actualPetList);
-        verify(petsRepo).sortByAgeDescending();
+        verify(petsRepo).sortByBirthDateDescending();
     }
 
     @Test

@@ -15,6 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
@@ -44,7 +45,7 @@ public class PetsControllerTest {
                 .description(RandomStringUtils.randomAlphabetic(15))
                 .gender("female")
                 .size(ThreadLocalRandom.current().nextInt(1, 40))
-                .age(ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE))
+                .birthDate(LocalDate.now())
                 .avatar("/avatar.png")
                 .pictureForDescription("bigPicture")
                 .minorPictureForDescription("smallPicture")

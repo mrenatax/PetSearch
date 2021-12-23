@@ -163,7 +163,7 @@ public class PetsService {
      *
      * @return List<Pet>
      */
-    public List<Pet> sortByBirtDateDescending() {
+    public List<Pet> sortByBirthDateDescending() {
         return petsRepo.sortByBirthDateDescending();
     }
 }

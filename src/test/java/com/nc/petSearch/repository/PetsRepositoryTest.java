@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.data.domain.*;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -40,7 +41,7 @@ public class PetsRepositoryTest {
                 .description(RandomStringUtils.randomAlphabetic(15))
                 .gender("female")
                 .size(ThreadLocalRandom.current().nextInt(1, 40))
-                .age(ThreadLocalRandom.current().nextInt(0, Integer.MAX_VALUE))
+                .birthDate(LocalDate.now())
                 .avatar("/avatar.png")
                 .pictureForDescription("bigPicture")
                 .minorPictureForDescription("smallPicture")
@@ -134,14 +135,14 @@ public class PetsRepositoryTest {
         Pet pet = entityManager.merge(getPet());
         pets.add(pet);
 
-        int ageLike = pets.get(0).getAge();
+        LocalDate ageLike = pets.get(0).getBirthDate();
 
         List<Pet> expectedPets = pets.stream()
-                .filter(onePet -> onePet.getAge() == ageLike)
+                .filter(onePet -> onePet.getBirthDate().equals(ageLike))
                 .collect(Collectors.toList());
 
         //when
-        List<Pet> petsFromRepo = petsRepo.findAllByAge(ageLike);
+        List<Pet> petsFromRepo = petsRepo.findAllByBirthDate(ageLike);
 
         //then
         assertEquals(expectedPets, petsFromRepo);
@@ -161,7 +162,7 @@ public class PetsRepositoryTest {
         //expectedPets.sort(Comparator.comparing(Pet::getAge).reversed());
 
         //when
-        List<Pet> petsFromRepo = petsRepo.sortByAgeAscending();
+        List<Pet> petsFromRepo = petsRepo.sortByBirthDateAscending();
 
         //then
         assertEquals(expectedPets, petsFromRepo);
@@ -180,7 +181,7 @@ public class PetsRepositoryTest {
                 .sorted(Comparator.comparing(Pet::getAge).reversed()).collect(Collectors.toList());
 
         //when
-        List<Pet> petsFromRepo = petsRepo.sortByAgeDescending();
+        List<Pet> petsFromRepo = petsRepo.sortByBirthDateDescending();
 
         //then
         assertEquals(expectedPets, petsFromRepo);
