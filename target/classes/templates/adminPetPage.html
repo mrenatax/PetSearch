@@ -44,7 +44,7 @@
                 <div id="edit-buttons" class="d-flex justify-content-start mb-3">
                     <a th:href="'/admin/pet/'+${pet.id} +'/edit'" class="btn btn-warning me-3">Редактировать</a>
                     <form th:action="@{/admin/pet/{id}/remove(id=${pet.id})}" th:method="post">
-                        <button class="btn btn-warning" type="submit">Удалить</button>
+                        <button disabled class="btn btn-warning" type="submit">Удалить</button>
                     </form>
                 </div>
                 <strong class="d-inline-block mb-2 text-success" th:text="${pet.typeOfPet}"></strong>
