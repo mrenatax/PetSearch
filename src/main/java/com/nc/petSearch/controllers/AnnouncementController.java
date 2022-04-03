@@ -26,7 +26,7 @@ public class AnnouncementController {
     @Autowired
     PetsService petsService;
 
-    @GetMapping("/admin/add-announcement")
+    @GetMapping("/add-announcement")
     public String addAnnouncement(Model model) {
         return "addingPage";
     }
@@ -40,7 +40,7 @@ public class AnnouncementController {
 
 
     //TODO нельзя было использовать @RequestBody?
-    @PostMapping("/admin/add-announcement")
+    @PostMapping("/add-announcement")
     public String addAnnouncementPost(@RequestParam("animalType") String animalType,
                                       @RequestParam String breed,
                                       @RequestParam("gender") String gender,
@@ -75,7 +75,7 @@ public class AnnouncementController {
             e.printStackTrace();
         }
 
-        return "redirect:/admin/my-announcements";
+        return "redirect:/petslist";
     }
 
     @GetMapping("/admin/pet/{id}/edit")
