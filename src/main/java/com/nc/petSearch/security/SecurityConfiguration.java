@@ -25,8 +25,8 @@ public class SecurityConfiguration {
     @Autowired
     public void authConfigure(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin")
-                .password(passwordEncoder.encode("123"))
+                .withUser("netcracker_admin")
+                .password(passwordEncoder.encode("7lcGgl"))
                 .roles("ADMIN");
         //TODO как-то странно и ин-мемори аутентификация и сервис по отдаче пользователей,
         // в целом если не успели сделать - ок, но тут вроде бы оставалось только маппинг между юзером и животными сделать
