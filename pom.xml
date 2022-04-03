@@ -131,7 +131,7 @@
                             <manifest>
                                 <addClasspath>true</addClasspath>
                                 <classpathPrefix>target/out</classpathPrefix>
-                                <mainClass>com.nc.petSearch</mainClass>
+                                <mainClass>com.nc.petSearch.Application</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
