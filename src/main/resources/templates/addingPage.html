@@ -19,7 +19,7 @@
                         border: 2px solid #2c1c04;
                         border-radius: 0.25rem;">
                     <div class="mb-3">
-                        <h5>Какое животное Вы хотите разместить?</h5>
+                        <h5 class="required-field">Какое животное Вы хотите разместить?</h5>
                         <div class="form-check">
                             <input id="cat-type" name="animalType" type="radio" class="form-check-input" value="Котенок" checked="" required="">
                             <label class="form-check-label" for="cat-type">Котенок</label>
@@ -30,14 +30,14 @@
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <h5 for="name" class="form-label">Введите породу:</h5>
+                        <h5 for="name" class="form-label required-field">Введите породу:</h5>
                         <input type="text" name="breed" class="form-control" id="name" placeholder="Алабай" required="">
                         <div class="invalid-feedback">
                             Заполните породу.
                         </div>
                     </div>
                     <div class="mb-3">
-                        <h5>Выберите пол:</h5>
+                        <h5 class="required-field">Выберите пол:</h5>
                         <div class="form-check">
                             <input id="male" name="gender" type="radio" class="form-check-input" value="Мальчик" checked="" required="">
                             <label class="form-check-label" for="male">Мальчик</label>
@@ -52,11 +52,11 @@
                         <input type="text" name="dateOfBirth" class="form-control" required="" autocomplete="off">
                     </div>
                     <div class="col-6 mb-3">
-                        <h5 for="description" class="form-label">Заполните описание</h5>
+                        <h5 for="description" class="form-label required-field">Заполните описание</h5>
                         <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                     </div>
                     <div class="upload-photos">
-                        <h5>Загрузите фотографии животного</h5>
+                        <h5 class="required-field">Загрузите фотографии животного</h5>
                         <div class="mb-3">
                             <input type="file" name="avatar" class="form-control" id="avatarPhoto" required="">
                         </div>
@@ -69,7 +69,8 @@
                     </div>
                 </div>
                 <div class="d-flex justify-content-end mb-5 mt-3">
-                    <button type="submit" class="btn btn-warning">Добавить</button>
+                    <button type="submit" class="btn btn-warning me-2">Добавить</button>
+                    <div class="btn btn-warning">Отмена</div>
                 </div>
             </form>
         </div>

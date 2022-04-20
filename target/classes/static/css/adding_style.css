@@ -1,3 +1,7 @@
+.required-field:after {
+    color: #f3c30c;
+    content: " *";
+}
 .new-announce {
     color:#f3c30c
 }

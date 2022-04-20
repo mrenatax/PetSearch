@@ -44,6 +44,31 @@ public class SearchController {
         return "petListPage";
     }
 
+    public String petListFilter(@PathVariable(value = "pageNum") int pageNum,
+                                @Param("field") String field,
+                                @Param("sortDir") String sortDir,
+                                @Param("keyword") String keyword,
+                                Model model) {
+
+        Page<Pet> page = petsService.findAllByKeyword(pageNum, keyword, field, sortDir);
+        int totalPages;
+        if (page.getTotalPages() != 0)
+            totalPages = page.getTotalPages();
+        else
+            totalPages = 1;
+        List<Pet> pets = page.getContent();
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("pets", pets);
+        model.addAttribute("field", field);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("keyword", keyword);
+
+        return "petListPage";
+    }
+
+
     //TODO этот тоже
     @GetMapping("/petslist/search")
     public String searchPage(@Param("keyword") String keyword, Model model) {
@@ -53,12 +78,12 @@ public class SearchController {
     //TODO в целом я не вижу смысла разделять это на 2 контроллера, эти методы можно было оставить в первом контроллере
     @GetMapping("/kittens")
     public String getKittens(Model model) {
-        return petListSearch(1, "id", "asc", "Котенок", model);
+        return petListFilter(1, "id", "asc", "Котенок", model);
     }
 
     @GetMapping("/puppies")
     public String getPuppies(Model model) {
-        return petListSearch(1, "id", "asc", "Щенок", model);
+        return petListFilter(1, "id", "asc", "Щенок", model);
     }
 
 }
