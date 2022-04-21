@@ -61,6 +61,16 @@ public class PetsService {
         }
         return petsRepo.findAll(pageable);
     }
+    public Page<Pet> findAllByKeywordSort(int pageNum, String keyword, String field, String sortDir) {
+
+        Pageable pageable = PageRequest.of(pageNum - 1, 12, sortDir.equals("asc") ? Sort.by(field).ascending()
+                : Sort.by(field).descending());
+
+        if (keyword != null) {
+            return petsRepo.findAllByKeywordSort(keyword.toUpperCase(Locale.ROOT), pageable);
+        }
+        return petsRepo.findAll(pageable);
+    }
 
 
     /**

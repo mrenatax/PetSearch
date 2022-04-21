@@ -50,7 +50,7 @@ public class SearchController {
                                 @Param("keyword") String keyword,
                                 Model model) {
 
-        Page<Pet> page = petsService.findAllByKeyword(pageNum, keyword, field, sortDir);
+        Page<Pet> page = petsService.findAllByKeywordSort(pageNum, keyword, field, sortDir);
         int totalPages;
         if (page.getTotalPages() != 0)
             totalPages = page.getTotalPages();
