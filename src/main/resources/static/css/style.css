@@ -126,6 +126,15 @@ input[type="search"]::-webkit-search-cancel-button {
    }
   }
 
+@media (min-width: 544px) {
+    #sex:hover>.dropdown-menu, #filter:hover>.dropdown-menu {
+       display: block;
+   }
+   #sex>.dropdown-toggle:active {
+       pointer-events: none;
+   }
+  }
+
 .dropdown-menu{
         color: #2c1c04;
         background-color: white;

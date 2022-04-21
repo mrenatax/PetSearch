@@ -21,10 +21,10 @@ public interface PetsRepo extends PagingAndSortingRepository<Pet, Integer> {
 
     List<Pet> findAllBySize(int size);
 
-    @Query(value="SELECT * FROM pet WHERE UPPER(CONCAT(name,' ',type_of_pet,' ',age,' ',gender,' ', description, 'котята', 'котенок', 'котёнок')) LIKE %?1%", nativeQuery = true)
+    @Query(value="SELECT * FROM pet WHERE UPPER(CONCAT(name,' ',type_of_pet,gender,' ',age,' ',gender,' ', description, 'котята', 'котенок', 'котёнок')) LIKE %?1%", nativeQuery = true)
     Page<Pet> findAllByKeyword(String keyword, Pageable pageable);
 
-    @Query(value="SELECT * FROM pet WHERE UPPER(CONCAT(name,' ',type_of_pet,' ',age,' ',gender,' ', description)) LIKE %?1%", nativeQuery = true)
+    @Query(value="SELECT * FROM pet WHERE UPPER(CONCAT(name,' ',type_of_pet,gender,' ',age,' ', description)) LIKE %?1%", nativeQuery = true)
     Page<Pet> findAllByKeywordSort(String keyword, Pageable pageable);
 
     //TODO все эти методы можно было сделать и без нэтив кверей, так же если они у вас совсем не используются, нужно удалить

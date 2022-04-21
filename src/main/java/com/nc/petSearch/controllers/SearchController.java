@@ -65,7 +65,10 @@ public class SearchController {
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("keyword", keyword);
 
-        return "petListPage";
+        if(keyword.equals("Котенок"))
+            return "kittensListPage";
+        else
+            return "puppiesListPage";
     }
 
 

@@ -27,18 +27,8 @@
                             Выбрать пол
                         </div>
                         <ul class="dropdown-menu dropdown-menu" aria-labelledby="navbarDarkDropdownMenuLink">
-                            <li th:if="${keyword == 'котенокм'}">
-                                <a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword == 'котенокм'} ? 'котенокд':'девочка'), field=name, sortDir=asc)}">Девочка</a>
-                            </li>
-                            <li th:unless="${keyword == 'котенокм'}">
-                                <a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword == 'щенокм'} ? 'щенокд':'девочка'), field=name, sortDir=asc)}">Девочка</a>
-                            </li>
-                            <li th:if="${keyword == 'котенокд'}">
-                                <a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword == 'котенокд'} ? 'котенокм':'мальчик'), field=name, sortDir=asc)}">Мальчик</a>
-                            </li>
-                            <li th:unless="${keyword == 'котенокд'}">
-                                <a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword == 'щенокд'} ? 'щенокм':'мальчик'), field=name, sortDir=asc)}">Мальчик</a>
-                            </li>
+                            <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? 'котенокд':'котенокд'), field=name, sortDir=asc)}">Девочка</a></li>
+                            <li><a class="dropdown-item" th:href="@{/petslist/search/1(keyword=(${keyword != null} ? 'котенокм':'котенокм'), field=name, sortDir=asc)}">Мальчик</a></li>
                         </ul>
                     </div>
                 </div>
